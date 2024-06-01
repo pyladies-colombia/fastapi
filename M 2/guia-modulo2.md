@@ -1,3 +1,3 @@
 # Modulo 2
 
-### Creadora: Laura López
+### Creadora: Laura López y Valen Ariza
