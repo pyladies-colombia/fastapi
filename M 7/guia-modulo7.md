@@ -69,14 +69,14 @@ Para correr el código anterior debes abrir una terminal y poner las siguientes 
 uvicorn main:app --reload
 ```
 Para validar que todo esté funcionando bien, debes ir a la siguiente URL en tu navegador: [http://127.0.0.1:8000/docs#/](http://127.0.0.1:8000/docs#/)
-![](/M 7/images/image01.png)
+![](./images/image01.png)
 
 Puedes ver un candado en la parte derecha del endpoint, si le das clic, podrás agregar información de autenticación como usuario y contraseña:
-![](/M 7/images/image02.png)
+![](./images/image02.png)
 
 Para entender un poco mejor el código anterior, vamos a ir paso a paso explicando cada línea, en esta oportunidad vamos a usar el 
 flujo de contraseña. Gráficamente sería algo así:
-![](/Users/carolinagomez/Documents/fastapi/M 7/images/password-flow.png)
+![](./images/password-flow.png)
 
 El usuario ingresa su nombre de usuario y contraseña y pulsa enter en la página web (cliente), luego esta información es enviada al servidor
 que válida si este usuario existe, en ese caso responde con un token de acceso, este podrá ser usado para identificar la autorización del usuario.
@@ -215,12 +215,12 @@ Vamos a probar nuestro código, abre la siguiente URL [http://127.0.0.1:8000/doc
 1. Clic en el botón de `Authorize`
 2. Ingresa el usuario: `johndoe`
 3. Ingresa la contraseña: `secret`
-![](/M 7/images/image04.png)
+![](./images/image04.png)
 4. Da clic en el botón `Authorize` y verás lo siguiente:
-![](/M 7/images/image05.png)
+![](./images/image05.png)
 
 Ahora puedes ir al endpoint `/users/me` y darle clic en la opción `Execute` y podrás ver la información de nuestro usuario de prueba:
-![](/M 7/images/image06.png)
+![](./images/image06.png)
 
 Si le das clic al icono del candado y luego al botón `Logout`, y ejecutas de nuevo la petición como indicamos anteriormente obtendrás el siguiente error:
 ```
