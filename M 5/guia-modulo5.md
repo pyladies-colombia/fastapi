@@ -53,12 +53,12 @@ Para usar este modelo de datos en nuestra API, declaramos el tipo de nuestro arg
 ```python
 from fastapi import FastAPI
 from pydantic import BaseModel
-from datetime import date
+from datetime import datetime
 
 class Reservation(BaseModel):
     name: str
     email: str
-    date: date
+    datetime: datetime
     guests: int
     observation: str | None = None 
 
