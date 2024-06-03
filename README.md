@@ -1,6 +1,6 @@
 # **Taller FastAPI**
 
-![Taller FastAPI con PyLadies Col.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/3c45153d-bb1e-4d68-8e74-5a974614999a/a449142b-f289-4097-964d-5d26bd0b8a89/Taller_FastAPI_con_PyLadies_Col.png)
+![Taller FastAPI con PyLadies Col.png](./media/Taller_FastAPI_con_PyLadies_Col.png)
 
 ❇️ Si tienes alguna duda escríbenos a [bogota@pyladies.com](mailto:bogota@pyladies.com) 
 
@@ -51,6 +51,6 @@ Este taller es autoguiado, está estructurado de una manera que puedas empezar p
 
 ## **Licencia**
 
-https://camo.githubusercontent.com/394c08dc4b8a47e0c6eaecef98132816cccc0bf446259bde1911462f4d6f5a91/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792d6e632d73612f342e302f38387833312e706e67
+![License.png](./media/License.png)
 
 Este trabajo está debajo de la licencia [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
