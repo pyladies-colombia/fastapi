@@ -58,7 +58,7 @@ class Reservation(BaseModel):
     name: str
     email: str
     datetime: datetime
-    guests: int = Field(..., gt=0, lt=10)
+    guests: int = Field(gt=0, lt=10)
     observation: str | None = None 
 ```
 
@@ -75,7 +75,7 @@ class Reservation(BaseModel):
     name: str
     email: str
     datetime: datetime
-    guests: int = Field(..., gt=0, lt=10)
+    guests: int = Field(gt=0, lt=10)
     observation: str | None = None 
 
 app = FastAPI()
