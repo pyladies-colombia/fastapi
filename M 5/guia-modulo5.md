@@ -1,4 +1,4 @@
-# Módulo 5: Validación de datos con Pydantic
+# Módulo 5: Validación de datos con Pydantic 🕵🏻‍♀️ 
 
 ### Creadora: Alejandra 
 
@@ -103,5 +103,5 @@ Por el contrario, si enviamos un campo con algún dato que no cumpla con las reg
 
 ## Recursos adicionales
 
-Puedes profundizar más en las secciones de <a href="https://fastapi.tiangolo.com/tutorial/body/" target="_blank">`Request Body`</a> y <a href="https://fastapi.tiangolo.com/tutorial/body-fields/" target="_blank">`Body - Fields`</a> del Tutorial - User Guide de FastAPI.
+📝 Puedes profundizar más en las secciones de <a href="https://fastapi.tiangolo.com/tutorial/body/" target="_blank">`Request Body`</a> y <a href="https://fastapi.tiangolo.com/tutorial/body-fields/" target="_blank">`Body - Fields`</a> del Tutorial - User Guide de FastAPI.
 
