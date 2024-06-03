@@ -8,32 +8,20 @@ Este proyecto consiste en una API para gestionar reservas de mesas en un restaur
 
 ¿ Estás Lista ? ⚡️
 
-## Requisitos
+## ¿Qué es un CRUD?
 
-- Python 3.9+
-- FastAPI
-- Uvicorn
-- SQLAlchemy
+CRUD es un acrónimo que representa las cuatro operaciones básicas que se pueden realizar en una base de datos o una aplicación web: Create (Crear), Read (Leer), Update (Actualizar) y Delete (Eliminar). Estas operaciones son esenciales para la gestión de datos, permitiendo a los usuarios:
 
-## Instalación
+- Create (Crear): Añadir nuevos registros o datos.
+- Read (Leer): Consultar o recuperar datos existentes.
+- Update (Actualizar): Modificar datos existentes.
+- Delete (Eliminar): Borrar datos existentes.
 
-### Paso 1: Configuración del Entorno
+## Manos a la Obra
 
-Primero, asegúrate de tener Python instalado. Luego, crea un entorno virtual e instala FastAPI y Uvicorn.
+### Paso 1: Requerimientos
 
-```bash
-# Crear un entorno virtual
-python -m venv venv
-
-# Activar el entorno virtual
-# En Windows
-venv\Scripts\activate
-# En macOS/Linux
-source venv/bin/activate
-
-# Instalar FastAPI y Uvicorn
-pip install fastapi uvicorn sqlalchemy pydantic
-```
+Asegúrate de tener los requierimientos indicados en el Modulo 2.
 
 ### Paso 2: Crear la Estructura del Proyecto
 
@@ -104,7 +92,7 @@ from datetime import datetime
 class ReservationBase(BaseModel):
     name: str
     date: datetime
-    num_people: int = Field(..., gt=0, description="El número de personas debe ser mayor que 0")
+    num_people: int
 
 # Esquema para crear una reserva
 class ReservationCreate(ReservationBase):
@@ -227,17 +215,17 @@ def delete_reservation(reservation_id: int, db: Session = Depends(get_db)):
 
 ### Paso 8:   Ejecutar la Aplicación
 
-Ejecuta la aplicación con Uvicorn.
+Ejecuta la aplicación con FastAPI.
 
 ```bash
-uvicorn main:app --reload
+fastapi dev main.py
 ```
 
 ### Paso 9:   Probar la API desde Swagger
 
 1. Abre tu navegador web y ve a http://127.0.0.1:8000/docs.
 2. Usa los botones "Try it out" en cada endpoint para interactuar con la API:
-   
+
 - POST /reservations/ para crear una reserva.
 - GET /reservations/ para listar reservas.
 - GET /reservations/{reservation_id} para obtener una reserva específica.
