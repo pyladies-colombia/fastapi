@@ -1,4 +1,4 @@
-# Modulo 2 - Preparando de tu PC
+# Modulo 2 - Preparación de tu PC
 
 ### Creadora: Laura López y Valen Ariza
 
@@ -25,7 +25,8 @@ Para utilizar FastAPI debes contar con un entorno controlado, esto se refiere a 
 - Abre una terminal.
 - Usando cd navega al directorio donde deseas crear tu proyecto.
 - Ejecuta los siguientes comandos:
-⁠ ```bash
+
+⁠```bash
 # Crear un entorno virtual
 python -m venv venv
 
@@ -34,12 +35,15 @@ python -m venv venv
 venv\Scripts\activate
 # En macOS/Linux
 source venv/bin/activate
- ⁠```
+⁠```
+
 2.⁠ ⁠**Instalar FastAPI y Uvicorn**:
-- Con el entorno virtual activado, ejecuta:
-⁠ ```bash
+
+Con el entorno virtual activado, ejecuta:
+
+⁠```bash
 pip install fastapi uvicorn
-```
+⁠```
 
 # Creando mi primer ¡Hola mundo!
 
@@ -47,7 +51,7 @@ pip install fastapi uvicorn
 
  Abre main.py en tu editor de texto favorito y añade el siguiente código:
 
-```
+⁠```
  from fastapi import FastAPI
 
  app = FastAPI()
@@ -55,8 +59,7 @@ pip install fastapi uvicorn
  @app.get("/")
  async def root():
     return {"message": "Hello World"}
-
-```
+⁠```
 
 Puedes ver la información en el [archivo](./main.py)
 
@@ -64,9 +67,10 @@ Puedes ver la información en el [archivo](./main.py)
 
 Utiliza Uvicorn para ejecutar la aplicación. Abre una terminal y ejecuta:
 
-```bash
+⁠```bash
   fastapi dev <ruta_del_archivo>
-```
+⁠```
+
 Esto iniciará el servidor y podrás ver la salida en la terminal
 
 ![](./images/execute_app.png)
@@ -108,6 +112,7 @@ Puedes crear un script para futuros proyectos, y con esto automatizar el proceso
   - Instalar las dependencias necesarias (fastapi y uvicorn) utilizando pip.
 
 Crea un archivo .sh con lo siguiente:
+
 ```bash
 #!/bin/bash
 
