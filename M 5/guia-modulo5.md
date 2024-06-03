@@ -48,7 +48,7 @@ class Reservation(BaseModel):
 
 ### Paso 3: Añadir validaciones adicionales
 
-Pydantic nos permite añadir validaciones adicionales a nuestros campos utilizando Field. Por ejemplo, podemos añadir una validación para asegurarnos de que el campo `guests` sea mayor que 0 y menor que 10. Primero, importamos Field de Pydantic y luego añadimos la validación al campo `guests`:
+Pydantic nos permite añadir validaciones adicionales a nuestros campos utilizando `Field`. Por ejemplo, podemos añadir una validación para asegurarnos de que el campo `guests` sea mayor que 0 y menor que 10. Primero, importamos `Field` de Pydantic. Luego, añadimos la validación al campo `guests` utilizando los argumentos `gt` y `lt` en `Field`, que representan "greater than" (mayor que) y "less than" (menor que), respectivamente.
 
 ```python
 from pydantic import BaseModel, Field
@@ -103,5 +103,5 @@ Por el contrario, si enviamos un campo con algún dato que no cumpla con las reg
 
 ## Recursos adicionales
 
-Puedes profundizar más en la secciones de <a href="https://fastapi.tiangolo.com/tutorial/body/" target="_blank">`Request Body`</a> y <a href="https://fastapi.tiangolo.com/tutorial/body-fields/" target="_blank">`Body - Fields`</a> del Tutorial - User Guide de FastAPI.
+Puedes profundizar más en las secciones de <a href="https://fastapi.tiangolo.com/tutorial/body/" target="_blank">`Request Body`</a> y <a href="https://fastapi.tiangolo.com/tutorial/body-fields/" target="_blank">`Body - Fields`</a> del Tutorial - User Guide de FastAPI.
 
