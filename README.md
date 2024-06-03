@@ -1,6 +1,6 @@
 # **Taller FastAPI**
 
-![Taller FastAPI con PyLadies Col.png](./media/Taller_FastAPI_con_PyLadies_Col.png)
+![Banner.png](./media/Banner.png)
 
 ❇️ Si tienes alguna duda escríbenos a [bogota@pyladies.com](mailto:bogota@pyladies.com) 
 
@@ -51,6 +51,6 @@ Este taller es autoguiado, está estructurado de una manera que puedas empezar p
 
 ## **Licencia**
 
-![Banner.png](./media/Banner.png)
+![License.png](./media/License.png)
 
 Este trabajo está debajo de la licencia [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
