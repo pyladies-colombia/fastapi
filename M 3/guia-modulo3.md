@@ -231,3 +231,7 @@ fastapi dev main.py
 - GET /reservations/{reservation_id} para obtener una reserva específica.
 - PUT /reservations/{reservation_id} para actualizar una reserva específica.
 - DELETE /reservations/{reservation_id} para eliminar una reserva específica.
+
+## Aceptas un Reto 🤓
+
+Agrega validaciones adicionales para los parámetros (Por ejemplo, número de personas debe ser mayor que 0).
