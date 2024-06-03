@@ -99,7 +99,7 @@ Ahora podemos probar nuestra API enviando datos y ver cómo se validan automáti
 
 ![](./images/image02.png)
 
-Por el contrario, si enviamos un campo con algún dato que no cumpla con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción y FastAPI devolverá un error al cliente detalladamentDe.
+Por el contrario, si enviamos un campo con algún dato que no cumpla con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción y FastAPI devolverá un error al cliente detalladamente.
 
 ![](./images/image03.png)
 
