@@ -36,12 +36,12 @@ Por ejemplo, si nuestra API recibe datos de una reservación, podríamos definir
 
 ```python
 from pydantic import BaseModel
-from datetime import date
+from datetime import datetime
 
 class Reservation(BaseModel):
     name: str
     email: str
-    date: date
+    datetime: datetime
     guests: int
     observation: str | None = None 
 ```
