@@ -18,6 +18,8 @@ Sin validación, nuestra API podría recibir datos incorrectos, lo que podría l
 
 ## Ejemplo 
 
+**Nota: Para este ejemplo, necesitas la versión 3.10 de Python.**
+
 Imagina que tienes una API que recibe datos de un formulario en tu app para gestionar reservas en un restaurante. Para asegurarnos de que los datos que recibimos son los correctos, necesitamos validarlos.
 
 ### Paso 1: Importar BaseModel de Pydantic
@@ -87,7 +89,7 @@ async def create_reservation(reservation: Reservation):
 
 ### Paso 5: Probar con los docs (Swagger UI)
 
-Si vamos a la URL `/docs` de nuestra API, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
+Si vamos a la URL `/docs`, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
 
 El modelo de datos creado se refleja en la documentación de Swagger, mostrando los campos esperados y sus tipos.
 
@@ -101,7 +103,14 @@ Por el contrario, si enviamos un campo con algún dato que no cumpla con las reg
 
 ![](./images/imagen03.png)
 
+## Reto
+
+💡 Ahora es tu turno, añade validaciones adicionales a los campos del modelo de datos `Reservation`; por ejemplo, asegúrate que el campo `name` no esté vacío y que el campo `observation` tenga una longitud máxima de 100 caracteres.
+
+Recuerda, la práctica hace al maestro.🙇‍♀️ ¡Buena suerte con tu reto! ✌️
+
 ## Recursos adicionales
 
-📝 Puedes profundizar más en las secciones de <a href="https://fastapi.tiangolo.com/tutorial/body/" target="_blank">`Request Body`</a> y <a href="https://fastapi.tiangolo.com/tutorial/body-fields/" target="_blank">`Body - Fields`</a> del Tutorial - User Guide de FastAPI.
+📝 **Documentación de Pydantic**: Consulta la sección de [`String Constraints`](https://docs.pydantic.dev/latest/concepts/fields/#string-constraints) en la documentación oficial de Pydantic. Aquí encontrarás una descripción detallada de cómo puedes aplicar restricciones y validaciones a las cadenas de texto en tus modelos de datos.
 
+📝 **Tutorial de FastAPI**: El [`Tutorial - User Guide`](https://fastapi.tiangolo.com/tutorial/) es una excelente fuente de información. Este tutorial cubre una amplia gama de temas, incluyendo la validación de datos, y puede ayudarte a entender cómo implementar y mejorar tus validaciones en FastAPI.
