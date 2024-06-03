@@ -93,15 +93,15 @@ Si vamos a la URL `/docs`, veremos la documentación generada automáticamente p
 
 El modelo de datos creado se refleja en la documentación de Swagger, mostrando los campos esperados y sus tipos.
 
-![](./images/imagen01.png)
+![](./images/image01.png)
 
 Ahora podemos probar nuestra API enviando datos y ver cómo se validan automáticamente. Si probamos enviando datos válidos, nuestra API enviará una respuesta exitosa.
 
-![](./images/imagen02.png)
+![](./images/image02.png)
 
-Por el contrario, si enviamos un campo con algún dato que no cumpla con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción y FastAPI devolverá un error al cliente detalladamente.
+Por el contrario, si enviamos un campo con algún dato que no cumpla con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción y FastAPI devolverá un error al cliente detalladamentDe.
 
-![](./images/imagen03.png)
+![](./images/image03.png)
 
 ## Reto
 
