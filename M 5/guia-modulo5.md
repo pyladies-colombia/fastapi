@@ -46,7 +46,23 @@ class Reservation(BaseModel):
     observation: str | None = None 
 ```
 
-### Paso 3: Usar el modelo de datos en nuestra API
+### Paso 3: Añadir validaciones adicionales
+
+Pydantic nos permite añadir validaciones adicionales a nuestros campos utilizando Field. Por ejemplo, podemos añadir una validación para asegurarnos de que el campo `guests` sea mayor que 0 y menor que 10. Primero, importamos Field de Pydantic y luego añadimos la validación al campo `guests`:
+
+```python
+from pydantic import BaseModel, Field
+from datetime import datetime
+
+class Reservation(BaseModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int = Field(..., gt=0, lt=10)
+    observation: str | None = None 
+```
+
+### Paso 4: Usar el modelo de datos en nuestra API
 
 Para usar este modelo de datos en nuestra API, declaramos el tipo de nuestro argumento con el modelo que creamos:
 
@@ -59,7 +75,7 @@ class Reservation(BaseModel):
     name: str
     email: str
     datetime: datetime
-    guests: int
+    guests: int = Field(..., gt=0, lt=10)
     observation: str | None = None 
 
 app = FastAPI()
@@ -69,7 +85,7 @@ async def create_reservation(reservation: Reservation):
     return reservation
 ```
 
-### Paso 4: Probar con los docs (Swagger UI)
+### Paso 5: Probar con los docs (Swagger UI)
 
 Si vamos a la URL `/docs` de nuestra API, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
 
@@ -87,5 +103,5 @@ Por el contrario, si enviamos un campo con algún dato que no cumpla con las reg
 
 ## Recursos adicionales
 
-Puedes profundizar más en la sección de <a href="https://fastapi.tiangolo.com/tutorial/body/" target="_blank">`Request Body`</a> de FastAPI.
+Puedes profundizar más en la secciones de <a href="https://fastapi.tiangolo.com/tutorial/body/" target="_blank">`Request Body`</a> y <a href="https://fastapi.tiangolo.com/tutorial/body-fields/" target="_blank">`Body - Fields`</a> del Tutorial - User Guide de FastAPI.
 
