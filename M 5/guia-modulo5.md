@@ -48,7 +48,7 @@ class Reservation(BaseModel):
 
 ### Paso 3: Usar el modelo de datos en nuestra API
 
-Para usar este modelo de datos en nuestra API, simplemente lo pasamos como argumento a nuestra función:
+Para usar este modelo de datos en nuestra API, declaramos el tipo de nuestro argumento con el modelo que creamos:
 
 ```python
 from fastapi import FastAPI
