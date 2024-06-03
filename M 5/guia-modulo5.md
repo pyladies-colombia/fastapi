@@ -8,7 +8,7 @@ En este módulo aprenderemos a validar datos en FastAPI usando Pydantic.
 
 ### ¿Qué es Pydantic?
 
-<a href="https://docs.pydantic.dev/latest/" class="external-link" target="_blank">Pydantic</a> es una librería que nos permite definir modelos de datos y validar los datos que recibimos en nuestra API.
+<a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a> es una librería que nos permite definir modelos de datos y validar los datos que recibimos en nuestra API.
 
 ### ¿Por qué es necesario validar datos en una API?
 
@@ -69,9 +69,23 @@ async def create_reservation(reservation: Reservation):
     return reservation
 ```
 
-### Paso 4: Validar los datos
+### Paso 4: Probar con los docs (Swagger UI)
 
-Cuando recibimos datos en nuestra API, Pydantic se encarga de validarlos automáticamente. Si los datos no cumplen con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción y FastAPI devolverá un error al cliente con los detalles del error.
+Si vamos a la URL `/docs` de nuestra API, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
 
-Utilizando Swagger, podemos ver cómo se ve la validación de datos en nuestra API:
+El modelo de datos creado se refleja en la documentación de Swagger, mostrando los campos esperados y sus tipos.
+
+![](./images/imagen01.png)
+
+Ahora podemos probar nuestra API enviando datos y ver cómo se validan automáticamente. Si probamos enviando datos válidos, nuestra API enviará una respuesta exitosa.
+
+![](./images/imagen02.png)
+
+Por el contraro, si enviamos un campo con algún dato que no cumpla con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción y FastAPI devolverá un error al cliente detalladamente.
+
+![](./images/imagen03.png)
+
+## Recursos adicionales
+
+Puedes profundizar más en la sección de <a href="https://fastapi.tiangolo.com/tutorial/body/" target="_blank">`Request Body`</a> de FastAPI.
 
