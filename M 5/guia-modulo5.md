@@ -14,7 +14,7 @@ En este módulo aprenderemos a validar datos en FastAPI usando Pydantic.
 
 La validación de datos nos permite asegurarnos de que los datos que recibimos son los correctos y cumplen con ciertas reglas o restricciones. Por ejemplo, podemos validar que un campo sea de un cierto tipo, que cumpla con un formato específico, etc.
 
-Validar datos en una API es importante porque nos ayuda a prevenir errores y vulnerabilidades de seguridad. Sin validación, nuestra API podría recibir datos incorrectos, lo que podría llevar a errores en la aplicación o a vulnerabilidades de seguridad.
+Sin validación, nuestra API podría recibir datos incorrectos, lo que podría llevar a errores en la aplicación.
 
 ## Ejemplo 
 
@@ -71,7 +71,7 @@ async def create_reservation(reservation: Reservation):
 
 ### Paso 4: Validar los datos
 
-Cuando recibimos datos en nuestra API, Pydantic se encarga de validarlos automáticamente. Si los datos no cumplen con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción.
+Cuando recibimos datos en nuestra API, Pydantic se encarga de validarlos automáticamente. Si los datos no cumplen con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción y FastAPI devolverá un error al cliente con los detalles del error.
 
 Utilizando Swagger, podemos ver cómo se ve la validación de datos en nuestra API:
 
