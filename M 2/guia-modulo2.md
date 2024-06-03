@@ -26,7 +26,7 @@ Para utilizar FastAPI debes contar con un entorno controlado, esto se refiere a 
 - Usando cd navega al directorio donde deseas crear tu proyecto.
 - Ejecuta los siguientes comandos:
 
-⁠```bash
+```
 # Crear un entorno virtual
 python -m venv venv
 
@@ -35,13 +35,13 @@ python -m venv venv
 venv\Scripts\activate
 # En macOS/Linux
 source venv/bin/activate
-⁠```
+```
 
 2.⁠ ⁠**Instalar FastAPI y Uvicorn**:
 
 Con el entorno virtual activado, ejecuta:
 
-⁠```bash
+⁠```
 pip install fastapi uvicorn
 ⁠```
 
@@ -51,7 +51,7 @@ pip install fastapi uvicorn
 
  Abre main.py en tu editor de texto favorito y añade el siguiente código:
 
-⁠```
+````
  from fastapi import FastAPI
 
  app = FastAPI()
@@ -59,7 +59,7 @@ pip install fastapi uvicorn
  @app.get("/")
  async def root():
     return {"message": "Hello World"}
-⁠```
+````
 
 Puedes ver la información en el [archivo](./main.py)
 
@@ -67,9 +67,9 @@ Puedes ver la información en el [archivo](./main.py)
 
 Utiliza Uvicorn para ejecutar la aplicación. Abre una terminal y ejecuta:
 
-⁠```bash
+````
   fastapi dev <ruta_del_archivo>
-⁠```
+````
 
 Esto iniciará el servidor y podrás ver la salida en la terminal
 
@@ -107,9 +107,9 @@ Redoc es compatible con la especificación OpenAPI, lo que significa que puede i
 Puedes crear un script para futuros proyectos, y con esto automatizar el proceso de instalación de dependencias:
 
 1. Instala las dependencias necesarias: 
-  - En el script puedes crear un entorno virtual y activarlo.
-  - Actualizar pip para asegurarse de tener la última versión.
-  - Instalar las dependencias necesarias (fastapi y uvicorn) utilizando pip.
+      - En el script puedes crear un entorno virtual y activarlo.
+      - Actualizar pip para asegurarse de tener la última versión.
+      - Instalar las dependencias necesarias (fastapi y uvicorn) utilizando pip.
 
 Crea un archivo .sh con lo siguiente:
 
