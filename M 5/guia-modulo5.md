@@ -68,7 +68,7 @@ Para usar este modelo de datos en nuestra API, declaramos el tipo de nuestro arg
 
 ```python
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime
 
 class Reservation(BaseModel):
