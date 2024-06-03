@@ -18,7 +18,7 @@ Sin validación, nuestra API podría recibir datos incorrectos, lo que podría l
 
 ## Ejemplo 
 
-**Nota: Para este ejemplo, necesitas la versión 3.10 de Python.**
+**Nota:** Para este ejemplo, necesitas la versión 3.10 de Python. Puedes guiarte con el [Módulo 2](../M%202/guia-modulo2.md) para configurar tu entorno de desarrollo. 
 
 Imagina que tienes una API que recibe datos de un formulario en tu app para gestionar reservas en un restaurante. Para asegurarnos de que los datos que recibimos son los correctos, necesitamos validarlos.
 
