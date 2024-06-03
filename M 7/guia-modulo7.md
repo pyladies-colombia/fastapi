@@ -29,7 +29,7 @@ Imagina que tienes una aplicación en donde quieres agregar un sistema de autent
 
 ### Paso 1: Configuración del Entorno
 
-Primero, asegúrate de tener Python 3.10 instalado. Luego, crea un entorno virtual e instala FastAPI, Uvicorn y Python Multipart (es necesario para enviar los datos).
+Primero, asegúrate de tener Python 3.10 instalado. Luego, crea un entorno virtual e instala FastAPI.
 
 ```bash
 # Crear un entorno virtual
@@ -42,7 +42,7 @@ venv\Scripts\activate
 source venv/bin/activate
 
 # Instalar librerias
-pip install fastapi uvicorn python-multipart
+pip install fastapi
 ```
 ### Paso 2: Esqueleto de la aplicación
 Dentro de tu ambiente virtual crea un archivo llamado `main.py` con la siguiente información:
@@ -66,7 +66,7 @@ async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
 Para correr el código anterior debes abrir una terminal y poner las siguientes instrucciones:
 
 ```bash
-uvicorn main:app --reload
+fastapi dev main.py
 ```
 Para validar que todo esté funcionando bien, debes ir a la siguiente URL en tu navegador: [http://127.0.0.1:8000/docs#/](http://127.0.0.1:8000/docs#/)
 ![](./images/image01.png)
@@ -288,7 +288,7 @@ from pydantic import BaseModel
 
 # to get a string like this run:
 # openssl rand -hex 32
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+SECRET_KEY = ""
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -440,9 +440,9 @@ async def read_own_items(
 ):
     return [{"item_id": "Foo", "owner": current_user.username}]
 ```
-Ahora si, es momento de validar nuestra aplicación, recuerda que para correrla debes ejecutar el comando:
+Ahora sí, es momento de validar nuestra aplicación, recuerda que para correrla debes ejecutar el comando:
 ```bash
-uvicorn main:app --reload
+fastapi dev main.py
 ```
 Abre la siguiente URL [http://127.0.0.1:8000/docs]( http://127.0.0.1:8000/docs) y verás algo asi:
 ![](./images/image07.png)
