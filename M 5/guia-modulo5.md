@@ -8,7 +8,7 @@ En este módulo aprenderemos a validar datos en FastAPI usando Pydantic.
 
 ### ¿Qué es Pydantic?
 
-<a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a> es una librería que nos permite definir modelos de datos y validar los datos que recibimos en nuestra API.
+<a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a> es una herramienta que nos permite definir modelos de datos y validar los datos que recibimos en nuestra API.
 
 ### ¿Por qué es necesario validar datos en una API?
 
