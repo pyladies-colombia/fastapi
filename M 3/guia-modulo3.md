@@ -21,7 +21,7 @@ CRUD es un acrónimo que representa las cuatro operaciones básicas que se puede
 
 ### Paso 1: Requerimientos
 
-Asegúrate de tener los requierimientos indicados en el Modulo 2.
+Asegúrate de tener los requerimientos indicados en el Módulo 2.
 
 ### Paso 2: Crear la Estructura del Proyecto
 
@@ -29,7 +29,6 @@ Crea la siguiente estructura de directorios y archivos para el proyecto:
 
 ```bash
 restaurant_reservation/
-│
 ├── main.py
 ├── models.py
 ├── schemas.py
@@ -42,7 +41,7 @@ restaurant_reservation/
 
 Configura la conexión a la base de datos usando SQLAlchemy con SQLite.
 
-database.py
+*database.py*
 ```bash
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -65,7 +64,7 @@ Base = declarative_base()
 
 Define los modelos de la base de datos. En este caso, definimos el modelo para las reservas.
 
-models.py
+*models.py*
 ```bash
 from sqlalchemy import Column, Integer, String, DateTime
 from database import Base
@@ -83,7 +82,7 @@ class Reservation(Base):
 
 Define los esquemas para validar las solicitudes y respuestas utilizando Pydantic.
 
-schemas.py
+*schemas.py*
 ```bash
 from pydantic import BaseModel, Field
 from datetime import datetime
@@ -114,7 +113,7 @@ class Reservation(ReservationBase):
 
 Define las operaciones CRUD (Crear, Leer, Actualizar, Borrar) utilizando SQLAlchemy.
 
-crud.py
+*crud.py*
 ```bash
 from sqlalchemy.orm import Session
 import models, schemas
@@ -158,7 +157,7 @@ def delete_reservation(db: Session, reservation_id: int):
 
 Define los endpoints de la API utilizando FastAPI.
 
-main.py
+*main.py*
 ```bash
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -225,13 +224,12 @@ fastapi dev main.py
 
 1. Abre tu navegador web y ve a http://127.0.0.1:8000/docs.
 2. Usa los botones "Try it out" en cada endpoint para interactuar con la API:
-
-- POST /reservations/ para crear una reserva.
-- GET /reservations/ para listar reservas.
-- GET /reservations/{reservation_id} para obtener una reserva específica.
-- PUT /reservations/{reservation_id} para actualizar una reserva específica.
-- DELETE /reservations/{reservation_id} para eliminar una reserva específica.
+    - POST /reservations/ para crear una reserva.
+    - GET /reservations/ para listar reservas.
+    - GET /reservations/{reservation_id} para obtener una reserva específica.
+    - PUT /reservations/{reservation_id} para actualizar una reserva específica.
+    - DELETE /reservations/{reservation_id} para eliminar una reserva específica.
 
 ## Aceptas un Reto 🤓
 
-Agrega validaciones adicionales para los parámetros (Por ejemplo, número de personas debe ser mayor que 0).
+Agrega validaciones adicionales para los parámetros. Por ejemplo, número de personas debe ser mayor que 0.
