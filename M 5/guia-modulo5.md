@@ -10,13 +10,15 @@ En este módulo aprenderemos a validar datos en FastAPI usando Pydantic.
 
 <a href="https://docs.pydantic.dev/latest/" class="external-link" target="_blank">Pydantic</a> es una librería que nos permite definir modelos de datos y validar los datos que recibimos en nuestra API.
 
-### ¿Por qué es necesario validar datos?
+### ¿Por qué es necesario validar datos en una API?
 
-La validación de datos es crucial para garantizar la integridad y seguridad de los datos, prevenir errores inesperados y mejorar la experiencia del desarrollador. Sin validación, nuestra API podría recibir datos incorrectos o maliciosos, lo que podría llevar a errores en la aplicación o a vulnerabilidades de seguridad.
+La validación de datos nos permite asegurarnos de que los datos que recibimos son los correctos y cumplen con ciertas reglas o restricciones. Por ejemplo, podemos validar que un campo sea de un cierto tipo, que cumpla con un formato específico, etc.
+
+Validar datos en una API es importante porque nos ayuda a prevenir errores y vulnerabilidades de seguridad. Sin validación, nuestra API podría recibir datos incorrectos, lo que podría llevar a errores en la aplicación o a vulnerabilidades de seguridad.
 
 ## Ejemplo 
 
-Imagina que tienes una API que recibe datos de un formulario. Para asegurarnos de que los datos que recibimos son los correctos, necesitamos validarlos.
+Imagina que tienes una API que recibe datos de un formulario en tu app para gestionar reservas en un restaurante. Para asegurarnos de que los datos que recibimos son los correctos, necesitamos validarlos.
 
 ### Paso 1: Importar BaseModel de Pydantic
 
@@ -33,20 +35,43 @@ El siguiente paso es definir un modelo de datos. Un modelo de datos es una clase
 Por ejemplo, si nuestra API recibe datos de una reservación, podríamos definir un modelo de datos como el siguiente:
 
 ```python
+from pydantic import BaseModel
+from datetime import date
+
 class Reservation(BaseModel):
     name: str
     email: str
     date: date
-    number_of_people: int
-    price: float
+    guests: int
     observation: str | None = None 
 ```
+
+### Paso 3: Usar el modelo de datos en nuestra API
 
 Para usar este modelo de datos en nuestra API, simplemente lo pasamos como argumento a nuestra función:
 
 ```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+from datetime import date
+
+class Reservation(BaseModel):
+    name: str
+    email: str
+    date: date
+    guests: int
+    observation: str | None = None 
+
+app = FastAPI()
+
 @app.post("/reservation/")
 async def create_reservation(reservation: Reservation):
     return reservation
 ```
+
+### Paso 4: Validar los datos
+
+Cuando recibimos datos en nuestra API, Pydantic se encarga de validarlos automáticamente. Si los datos no cumplen con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción.
+
+Utilizando Swagger, podemos ver cómo se ve la validación de datos en nuestra API:
 
