@@ -51,6 +51,6 @@ Este taller es autoguiado, está estructurado de una manera que puedas empezar p
 
 ## **Licencia**
 
-![License.png](./media/License.png)
+![Banner.png](./media/Banner.png)
 
 Este trabajo está debajo de la licencia [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
