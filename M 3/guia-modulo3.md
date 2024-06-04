@@ -230,6 +230,15 @@ fastapi dev main.py
     - PUT /reservations/{reservation_id} para actualizar una reserva específica.
     - DELETE /reservations/{reservation_id} para eliminar una reserva específica.
 
+Ejemplo:
+- Visualización del CRUD en el Swagger.
+![](./images/image1.png)
+- Despliegue de Post y clic en el botón "Try it out".
+![](./images/image2.png)
+- Prueba de Post.
+![](./images/image3.png)
+
+
 ## Aceptas un Reto 🤓
 
 Agrega validaciones adicionales para los parámetros. Por ejemplo, número de personas debe ser mayor que 0.
