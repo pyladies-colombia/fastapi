@@ -1,4 +1,4 @@
-# Modulo 3 Proyecto: Gestión Básica de Reservas
+# Módulo 3: Ejemplo básico #1 - Gestión Básica de Reservas
 
 ### Creadora: Johana Alarcón
 
