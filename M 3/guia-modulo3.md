@@ -6,7 +6,7 @@
 
 Este proyecto es una API sencilla para gestionar reservas de mesas en un restaurante. Incluye endpoints para obtener una reserva por ID y obtener todas las reservas, con la opción de limitar el número de resultados usando un parámetro de consulta (limit). Este proyecto trabaja con datos de ejemplo estáticos.
 
-¿ Estás Lista ? ⚡️
+¿Estás Lista? ⚡️
 
 ## ¿Qué es un Endpoint?
 
@@ -32,7 +32,7 @@ restaurant_reservation/
 Define una aplicación FastAPI con rutas para obtener una reservación específica por ID, y para listar todas las reservaciones con un límite opcional.
 
 *main.py*
-```bash
+```python
 from fastapi import FastAPI, HTTPException
 from typing import List, Optional
 
@@ -59,7 +59,7 @@ def get_reservation(reservation_id: int):
 
 # Define una ruta para obtener todas las reservaciones con un límite opcional
 @app.get("/reservations/")
-def get_reservations(limit: Optional[int] = None) -> List[dict]:
+def get_reservations(limit: Union[int, None] = None):
     # Si se proporciona un límite, retorna solo ese número de reservaciones
     if limit:
         return reservations[:limit]
