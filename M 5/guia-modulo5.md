@@ -89,7 +89,7 @@ async def create_reservation(reservation: Reservation):
 
 ### Paso 5: Probar con los docs (Swagger UI)
 
-Si vamos a la URL `/docs`, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
+Si vamos a la URL `http://127.0.0.1:8000/docs`, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
 
 El modelo de datos creado se refleja en la documentación de Swagger, mostrando los campos esperados y sus tipos.
 
