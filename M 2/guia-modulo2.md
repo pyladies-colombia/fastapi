@@ -1,10 +1,10 @@
 # Modulo 2 - Preparación de tu PC
 
-### Creadora: Laura López y Valen Ariza
+### Creadoras: Laura López y Valen Ariza
 
 # Configuración de ambiente
 
-Este tutorial te guiará a través de los pasos necesarios para preparar tu PC, cubriremos la instalación de Python 3.10, FastAPI y uvicorn. 
+Este tutorial te guiará a través de los pasos necesarios para preparar tu PC, cubriremos la instalación de Python 3.10 y FastAPI. 
 
 Para utilizar FastAPI debes contar con un entorno controlado, esto se refiere a que vas a crear un entorno para asegurar estabilidad y reproducibilidad de tu código.
 
@@ -19,7 +19,7 @@ Para utilizar FastAPI debes contar con un entorno controlado, esto se refiere a 
 - Asegúrate de marcar la opción "Add Python to PATH" antes de continuar con la instalación.
 - Sigue las instrucciones del instalador para completar la instalación.
 
-## Paso 2: Instalar FastAPI y Uvicorn
+## Paso 2: Instalar FastAPI
 
 1.⁠ ⁠**Crear un entorno virtual**:
 - Abre una terminal.
@@ -37,12 +37,12 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-2.⁠ ⁠**Instalar FastAPI y Uvicorn**:
+2.⁠ ⁠**Instalar FastAPI**:
 
 Con el entorno virtual activado, ejecuta:
 
 ⁠```
-pip install fastapi uvicorn
+pip install fastapi
 ⁠```
 
 # Creando mi primer ¡Hola mundo!
@@ -63,9 +63,16 @@ pip install fastapi uvicorn
 
 Puedes ver la información en el [archivo](./main.py)
 
+Algunos editores de texto que te recomendamos:
+- Visual Studio Code (VS Code)
+- PyCharm
+
+Y si quieres trabajar en un entorno con línea de comandos:
+- Vim
+
 ## Paso 2: Ejecutar la aplicación
 
-Utiliza Uvicorn para ejecutar la aplicación. Abre una terminal y ejecuta:
+Ahora vamos a correr la aplicación. Abre una terminal y ejecuta:
 
 ````
   fastapi dev <ruta_del_archivo>
@@ -101,7 +108,11 @@ Redoc es compatible con la especificación OpenAPI, lo que significa que puede i
 
 ![](./images/redocs.png)
 
-¡Y eso es todo! Ahora tienes una aplicación básica de FastAPI que devuelve un mensaje "Hola Mundo". Puedes expandir esta aplicación añadiendo más rutas y funcionalidades siguiendo los demás modulos.
+¡Y eso es todo! Ahora tienes una aplicación básica de FastAPI que devuelve un mensaje "Hola Mundo". Puedes expandir esta aplicación añadiendo más rutas y funcionalidades siguiendo los modulos de este repositorio:
+- Módulos básicos: [M 3](../M%203/guia-modulo3.md), [M 4](../M%204/guia-modulo4.md), [M 5](../M%205/guia-modulo5.md)
+- Módulos intermedios: [M 6](../M%206/guia-modulo6.md), [M 7](../M%207/guia-modulo7.md)
+- Módulos avanzados: [M 8](../M%208/guia-modulo8.md), [M 9](../M%209/guia-modulo9.md)
+- Módulos extra: [ME 10](../ME%2010/guia-modulo10.md), [ME 11](../ME%2011/guia-modulo11.md)
 
 ## Recomendaciones:
 Puedes crear un script para futuros proyectos, y con esto automatizar el proceso de instalación de dependencias:
@@ -109,7 +120,7 @@ Puedes crear un script para futuros proyectos, y con esto automatizar el proceso
 1. Instala las dependencias necesarias: 
       - En el script puedes crear un entorno virtual y activarlo.
       - Actualizar pip para asegurarse de tener la última versión.
-      - Instalar las dependencias necesarias (fastapi y uvicorn) utilizando pip.
+      - Instalar las dependencias necesarias (fastapi) utilizando pip.
 
 Crea un archivo .sh con lo siguiente:
 
@@ -123,8 +134,8 @@ source venv/bin/activate
 # Actualizar pip
 pip install --upgrade pip
 
-# Instalar FastAPI y Uvicorn
-pip install fastapi uvicorn
+# Instalar FastAPI
+pip install fastapi
 ```
 
 Si quieres saber más puedes dirigirte a la documentación oficial de [FastAPI](https://fastapi.tiangolo.com/learn/)
