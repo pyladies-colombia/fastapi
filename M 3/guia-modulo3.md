@@ -16,7 +16,7 @@ Un endpoint es una URL específica en una API que actúa como un punto de acceso
 
 ### Paso 1: Requerimientos
 
-Asegúrate de tener los requerimientos indicados en el Módulo 2.
+Asegúrate de tener los requerimientos indicados en el [Módulo 2](../M%202/guia-modulo2.md)
 
 ### Paso 2: Crear la Estructura del Proyecto
 
@@ -85,9 +85,9 @@ fastapi dev main.py
 
 
 Ejemplo:
-- Visualización de entpoint en el Swagger.
+- Visualización de los endpoints en Swagger UI.
 ![](./images/image_1.png)
-- Despliegue de Post y clic en el botón "Try it out".
+- Despliegue de la sección y clic en el botón "Try it out".
 ![](./images/image_2.png)
 - Prueba de GET.
 ![](./images/image_3.png)
@@ -95,4 +95,4 @@ Ejemplo:
 
 ## Aceptas un Reto 🤓
 
-Dentro de la función ```get_reservation```, se agrega una validación para verificar que el ```reservation_id``` proporcionado sea un número positivo.
+Dentro de la función `get_reservation`, agrega una validación para verificar que el `reservation_id` proporcionado sea un número positivo.
