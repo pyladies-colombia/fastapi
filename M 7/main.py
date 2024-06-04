@@ -53,20 +53,24 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 app = FastAPI()
 
 
+# Valida la contraseña
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 
+# Obtiene el hash de la contraseña
 def get_password_hash(password):
     return pwd_context.hash(password)
 
 
+# Obtiene el usuario
 def get_user(db, username: str):
     if username in db:
         user_dict = db[username]
         return UserInDB(**user_dict)
 
 
+# Autentica el usuario
 def authenticate_user(fake_db, username: str, password: str):
     user = get_user(fake_db, username)
     if not user:
@@ -76,6 +80,7 @@ def authenticate_user(fake_db, username: str, password: str):
     return user
 
 
+# Crea un token de acceso
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode = data.copy()
     if expires_delta:

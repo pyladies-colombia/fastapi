@@ -5,16 +5,16 @@
 ## Descripción
 
 > Imagina que te acaban de compartir acceso a un documento de texto, pero cuando das clic en el
-> enlace al documento te dice que **no tienes acceso** 🛑. ¿Cómo lo abririas?
+> enlace al documento te dice que **no tienes acceso** 🛑. ¿Cómo lo abrirías?
 
-En ese caso, podrías registrarte con tu cuenta de correo electrónico y luego podrás ver el contenido del documento.
+En ese caso, podrías registrarte con tu cuenta de correo electrónico y luego verías el contenido del documento.
 En este proceso tuviste la oportunidad de usar los dos conceptos que veremos en esta guía, Autenticación y Autorización.
 
 ### ¿Qué es Autenticación?
 La autenticación es el proceso mediante el cual se verifica la identidad de un usuario.
 
 ### ¿Qué es Autorización?
-La autorización es el proceso mediante el cual se determina un usuario autenticado, a que recursos podrá acceder.
+La autorización es el proceso mediante el cual se determina un usuario autenticado, a qué recursos podrá acceder.
 
 Para lograr esto en nuestras aplicaciones, podemos hacer uso de **OAuth2**, esta es una especificación que define diferentes maneras de manejar la Autorización y Autenticación de servicios.
 Puedes leer más sobre ella [aquí](https://oauth.net/2/).
@@ -198,7 +198,7 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
     return {"access_token": user.username, "token_type": "bearer"}
 ```
 
-Esta función primero obtiene el `username` del usuario y válida que el usuario exista, en caso tal de que no
+Esta función primero obtiene el `username` del usuario y valida que el usuario exista, en caso tal de que no,
 se lanza una excepción diciendo que el usuario es incorrecto.
 Luego válida que la contraseña sea correcta, en caso de que no, también lanza una excepción.
 Finalmente, si el usuario y contraseña existen, se retorna un token de acceso.
@@ -258,11 +258,11 @@ pip install pyjwt
 ```
 
 En nuestro ejemplo hemos manejado el hash de las contraseñas como unos caracteres adicionales que se pone al inicio de la contraseña, 
-pero esta práctica no es segura, por lo que usaremos una libreria que nos permitirá que la contraseña original no sea mostrada,
-en cambio, tendremos una nueva secuencia de caracteres generada por la libreria, lo que nos permitirá que si en una ambiente real
+pero esta práctica no es segura, por lo que usaremos una librería que nos permitirá que la contraseña original no sea mostrada,
+en cambio, tendremos una nueva secuencia de caracteres generada por la librería, lo que nos permitirá que si en una ambiente real
 de producción alguien acceda a nuestra base de datos, no tenga la información sensible de los usuarios como contraseñas en texto plano.
 
-La libreria que usaremos se llama [**PassLib**](https://pypi.org/project/passlib/), y el algoritmo para el hashing que se recomienda es Bcrypt. Puedes instalarla con el siguiente comando:
+La librería que usaremos se llama [**PassLib**](https://pypi.org/project/passlib/), y el algoritmo para el hashing que se recomienda es Bcrypt. Puedes instalarla con el siguiente comando:
 ```
 pip install "passlib[bcrypt]"
 ```
@@ -337,7 +337,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 app = FastAPI()
 
 
-# Válida la contraseña
+# Valida la contraseña
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
@@ -404,7 +404,7 @@ async def get_current_active_user(
         raise HTTPException(status_code=400, detail="Usuario Inactivo")
     return current_user
 ```
-Como puedes observar en la función `get_current_user`, se hace una descodificación del token del usuario y se válida 
+Como puedes observar en la función `get_current_user`, se hace una descodificación del token del usuario y se valida 
 que si exista. La llave `sub`del token es usada para poner la identificación del usuario, en este caso el `username`.
 
 Nuestros endpoints también cambian un poco al usar JWT, en este caso el endpoint `/token` ahora genera un token que expira 
