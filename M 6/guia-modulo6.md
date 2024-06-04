@@ -1,4 +1,4 @@
-# Módulo 6: Gestión de Base de Datos con SQLModel ⛁
+# Módulo 6: Ejemplo Intermedio #1: - Gestión de Base de Datos con SQLModel ⛁
 
 ### Creadora: Alejandra
 
