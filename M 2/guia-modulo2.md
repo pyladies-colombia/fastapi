@@ -1,4 +1,4 @@
-# Modulo 2 - Preparación de tu PC
+# Módulo 2 - Preparación de tu PC
 
 ### Creadoras: Laura López y Valen Ariza
 
