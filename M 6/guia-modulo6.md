@@ -213,7 +213,7 @@ def create_reservation(reservation: ReservationBase):
 
 Ahora que tenemos el modelo de `ReservationBase` lo podemos usar en el nuevo endpoint `create_reservation` que creamos en FastAPI.
 
-**Nota:** En este ejemplo, el endpoint `create_reservation` sólo devuelve la reserva para poder probar en este punto.
+**Nota:** Hasta este paso el endpoint `create_reservation` solo retorna la reserva que recibe para probar que todo está funcionando correctamente.
 
 ### Paso 8: Guardar la reserva
 
