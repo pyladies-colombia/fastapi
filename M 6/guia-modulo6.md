@@ -14,11 +14,15 @@ Antes de comenzar, es importante que tengas algunos conocimientos básicos.
 
 ### ¿Qué es una ORM?
 
-ORM (Object Relational Mapping), es una herramienta de programación que permite convertir datos entre sistemas incompatibles en objetos de programación, por ejemplo, entre una base de datos relacional y un lenguaje de programación, permite traducir de SQL a código Python y viceversa, todo usando clases y objetos.
+ORM (Object Relational Mapping), es una herramienta de programación que permite convertir datos entre una base de datos relacional y un lenguaje de programación, permite traducir de SQL a código Python y viceversa, todo usando clases y objetos.
 
 ## Ejemplo
 
-Imagina que necesitas gestionar la base de datos de tu app de reservas:
+**Nota:** Para este ejemplo, necesitas la versión 3.10 de Python. Puedes guiarte con el [Módulo 2](../M%202/guia-modulo2.md) para configurar tu entorno de desarrollo.
+
+Imagina que necesitas gestionar la base de datos de tu app de reservas. 
+
+Antes de comenzar, crea un archivo `main.py` y sigue los pasos a continuación.
 
 ### Paso 1: Instalar SQLModel
 
@@ -45,7 +49,7 @@ La clase `Reservation` es un modelo de SQLModel, el equivalente a una tabla SQL 
 
 ### Paso 3: Crear el motor de la base de datos (engine)
 
-Para crear el motor de la base de datos de SQLAlchemy, necesitas importar la función `create_engine` de SQLModel y pasarle la URL de la base de datos. 
+Para crear el motor de la base de datos, necesitas importar la función `create_engine` de SQLModel y pasarle la URL de la base de datos. 
 
 Cada URL de base de datos tiene un formato específico, por ejemplo, para SQLite, (que es la base de datos que usaremos en este ejemplo), la URL es `sqlite:///` seguido del nombre del archivo de la base de datos, en este caso, `database.db`:
 
@@ -91,17 +95,206 @@ class Reservation(SQLModel, table=True):
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
 
+engine = create_engine(sqlite_url, echo=True)
+
 SQLModel.metadata.create_all(engine)
 ```
 
-### Paso 5: 
+### Paso 5: Correr el programa
+
+Para correr el programa, ejecuta el siguiente comando:
+
+```bash
+python main.py
+```
+
+Si todo está correcto, verás lo siguiente en la consola:
+
+```
+2024-06-04 22:52:56,487 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("reservation")
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info("reservation")
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine 
+CREATE TABLE reservation (
+        id INTEGER NOT NULL, 
+        name VARCHAR NOT NULL, 
+        email VARCHAR NOT NULL, 
+        datetime DATETIME NOT NULL, 
+        guests INTEGER NOT NULL, 
+        observation VARCHAR, 
+        PRIMARY KEY (id)
+)
+
+
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine [no key 0.00008s] ()
+2024-06-04 22:52:56,513 INFO sqlalchemy.engine.Engine COMMIT
+
+```
+
+Esto significa que la tabla `reservation` fue creada con éxito en la base de datos `database.db`.
+
+### Paso 6: Crear un modelo adicional
+
+Como cada modelo de SQLModel es equivalente a un modelo de Pydantic, se puede usar para crear un endpoint en FastAPI. Sin embargo, si usamos el modelo que creamos anterioremente, se le estaría permitiendo al usuario escoger el `id` de la reserva en la base de datos, pero queremos que sea la base de datos la que decida el `id` en lugar del usuario. Para evitar esto, podemos crear un modelo adicional que no incluya el `id` al que llamaremos `ReservationBase`:
+
+```python
+from fastapi import FastAPI
+from sqlmodel import Field, SQLModel, create_engine
+from datetime import datetime
+
+class ReservationBase(SQLModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int
+    observation: str | None = None
+
+class Reservation(ReservationBase, table=True):
+    id: int = Field(default=None, primary_key=True)
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
+
+SQLModel.metadata.create_all(engine)
+```
+
+### Paso 7: Crear un endpoint en FastAPI
+
+Primero crea un app de FastAPI y luego crea un endpoint para crear una reserva:
+
+```python
+from fastapi import FastAPI
+from sqlmodel import Field, SQLModel, create_engine
+from datetime import datetime
+
+class ReservationBase(SQLModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int
+    observation: str | None = None
+
+class Reservation(ReservationBase, table=True):
+    id: int = Field(default=None, primary_key=True)
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
+
+SQLModel.metadata.create_all(engine)
+
+app = FastAPI()
+
+@app.post("/reservations/")
+def create_reservation(reservation: ReservationBase):
+    return reservation
+```
+
+Ahora que tenemos el modelo de `ReservationBase` lo podemos usar en el nuevo endpoint `create_reservation` que creamos en FastAPI.
+
+**Nota:** En este ejemplo, el endpoint `create_reservation` sólo devuelve la reserva para poder probar en este punto.
+
+
+### Paso 8: Guardar la reserva
+
+Lo primero que debes hacer es importar `Session` de SQLModel y luego crear una sesión con el motor de la base de datos, en nuestro ejemplo lo haremos en el mismo endpoint:
+
+```python
+from fastapi import FastAPI
+from sqlmodel import Field, SQLModel, create_engine, Session
+from datetime import datetime
+
+class ReservationBase(SQLModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int
+    observation: str | None = None
+
+class Reservation(ReservationBase, table=True):
+    id: int = Field(default=None, primary_key=True)
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
+
+SQLModel.metadata.create_all(engine)
+
+app = FastAPI()
+
+@app.post("/reservations/")
+def create_reservation(reservation: ReservationBase):
+    with Session(engine) as session:
+        db_reservation = Reservation.model_validate(reservation)
+        session.add(db_reservation)
+        session.commit()
+        session.refresh(db_reservation)
+        return db_reservation
+```
+
+## Paso 9: Leer las reservas
+
+Primero, importa `select` de SQLModel y luego crea un nuevo endpoint para leer las reservas:
+
+```python
+from fastapi import FastAPI
+from sqlmodel import Field, SQLModel, create_engine, Session, select
+from datetime import datetime
+
+class ReservationBase(SQLModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int
+    observation: str | None = None
+
+class Reservation(ReservationBase, table=True):
+    id: int = Field(default=None, primary_key=True)
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
+
+SQLModel.metadata.create_all(engine)
+
+app = FastAPI()
+
+@app.post("/reservations/")
+def create_reservation(reservation: ReservationBase):
+    with Session(engine) as session:
+        db_reservation = Reservation.model_validate(reservation)
+        session.add(db_reservation)
+        session.commit()
+        session.refresh(db_reservation)
+        return db_reservation
+
+@app.get("/reservations/")
+def read_reservations():
+    with Session(engine) as session:
+        reservations = session.exec(select(Reservation)).all()
+        return reservations
+```
+
+## Reto
+
+💡 Ahora es tu turno, crea un endpoint para eliminar una reserva.
+
+Recuerda, la práctica hace al maestro. 🙇‍♀️ ¡Buena suerte con tu reto! ✌️
 
 
 ## Recursos adicionales
 
+**Nota:** Este es un ejemplo simple con todo el código en un mismo archivo para facilitar el aprendizaje. Puedes consultar más en las siguientes fuentes donde aprenderás cómo estructurar mejor tus aplicaciones con múltiples archivos, manejar sesiones con Dependencies, agregar tests y profundizar más sobre otros temas:
+
 📝 **Introducción a bases de datos**: Consulta el capítulo de [`Intro to Databases`](https://sqlmodel.tiangolo.com/databases/) en la documentación oficial de SQLModel si quieres aprender más sobre bases de datos.
 
 📝 **ORMs**: Consulta el capítulo de [`Database to Code (ORMs)`](https://sqlmodel.tiangolo.com/db-to-code/) en la documentación oficial de SQLModel si quieres profundizar más sobre ORMs.
-
 
 📝 **Tutorial de SQLModel**: Consulta el capítulo de [`Tutorial - UserGuide`](https://sqlmodel.tiangolo.com/tutorial/) en la documentación oficial de SQLModel si quieres aprender más sobre SQLModel.
