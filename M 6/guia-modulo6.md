@@ -75,7 +75,9 @@ sqlite_url = f"sqlite:///{sqlite_file_name}"
 engine = create_engine(sqlite_url, echo=True)
 ```
 
-En este ejemplo, estamos usando el argumento `echo=True` para que el motor de la base de datos imprima todas las consultas SQL que se ejecutan en la consola, es particularmente útil para depurar y entender lo que está pasando en la base de datos.
+En este ejemplo, estamos usando el argumento `echo=True` para que el motor de la base de datos imprima todas las consultas SQL que se ejecutan en la consola, es particularmente útil para depurar y entender lo que está pasando en la base de datos.'
+
+**Nota:** El motor de la base de datos (engine) es un objeto que se encarga de la comunicación con la base de datos y de manejar las conexiones, se crea una sola vez y se reutiliza en toda la app.
 
 ### Paso 4: Crear la base de datos y la tabla
 
@@ -213,10 +215,11 @@ Ahora que tenemos el modelo de `ReservationBase` lo podemos usar en el nuevo end
 
 **Nota:** En este ejemplo, el endpoint `create_reservation` sólo devuelve la reserva para poder probar en este punto.
 
-
 ### Paso 8: Guardar la reserva
 
-Lo primero que debes hacer es importar `Session` de SQLModel y luego crear una sesión con el motor de la base de datos, en nuestro ejemplo lo haremos en el mismo endpoint:
+Antes de poder guardar la reserva en la base de datos, necesitamos importar `Session` de SQLModel y luego crear una sesión con el motor de la base de datos, en nuestro ejemplo lo haremos en el mismo endpoint. 
+
+**Nota:** La sesión (session) usa el motor de la base de datos (engine) para comunicarse con la base de datos y se usa una por request.
 
 ```python
 # main.py
@@ -315,3 +318,11 @@ Recuerda, la práctica hace al maestro. 🙇‍♀️ ¡Buena suerte con tu reto
 📝 **ORMs**: Consulta el capítulo de [`Database to Code (ORMs)`](https://sqlmodel.tiangolo.com/db-to-code/) en la documentación oficial de SQLModel si quieres profundizar más sobre ORMs.
 
 📝 **Tutorial de SQLModel**: Consulta el capítulo de [`Tutorial - UserGuide`](https://sqlmodel.tiangolo.com/tutorial/) en la documentación oficial de SQLModel si quieres aprender más sobre SQLModel.
+
+
+//
+
+create the data in Python, in memory (in a variable)
+save/send the data to the database
+
+
