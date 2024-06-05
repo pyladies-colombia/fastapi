@@ -105,4 +105,3 @@ SQLModel.metadata.create_all(engine)
 
 
 📝 **Tutorial de SQLModel**: Consulta el capítulo de [`Tutorial - UserGuide`](https://sqlmodel.tiangolo.com/tutorial/) en la documentación oficial de SQLModel si quieres aprender más sobre SQLModel.
->>>>>>> Stashed changes
