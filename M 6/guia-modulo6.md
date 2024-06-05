@@ -53,7 +53,6 @@ Para crear el motor de la base de datos, necesitas importar la función `create_
 
 Cada URL de base de datos tiene un formato específico, por ejemplo, para SQLite, (que es la base de datos que usaremos en este ejemplo), la URL es `sqlite:///` seguido del nombre del archivo de la base de datos, en este caso, `database.db`:
 
-
 ```python
 from sqlmodel import Field, SQLModel, create_engine
 from datetime import datetime
@@ -74,11 +73,9 @@ engine = create_engine(sqlite_url, echo=True)
 
 En este ejemplo, estamos usando el argumento `echo=True` para que el motor de la base de datos imprima todas las consultas SQL que se ejecutan en la consola, es particularmente útil para depurar y entender lo que está pasando en la base de datos.
 
-
 ### Paso 4: Crear la base de datos y la tabla
 
 Crear el motor de base de datos no crea el archivo de la base de datos, para crear la base de datos y la tabla, necesitas ejecutar `SQLModel.metadata.create_all(engine)`, esto creará el archivo `database.db` y la tabla `reservation` en la base de datos.
-
 
 ```python
 from sqlmodel import Field, SQLModel, create_engine
@@ -287,7 +284,6 @@ def read_reservations():
 💡 Ahora es tu turno, crea un endpoint para eliminar una reserva.
 
 Recuerda, la práctica hace al maestro. 🙇‍♀️ ¡Buena suerte con tu reto! ✌️
-
 
 ## Recursos adicionales
 
