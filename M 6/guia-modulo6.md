@@ -49,7 +49,7 @@ class Reservation(SQLModel, table=True):
 
 La clase `Reservation` es un modelo de SQLModel, el equivalente a una tabla SQL en código Python y cada atributo de la clase es equivalente a una columna de la tabla.
 
-### Paso 3: Crear el motor de la base de datos (engine)
+### Paso 3: Crear el motor de la base de datos (`engine`)
 
 Para crear el motor de la base de datos, necesitas importar la función `create_engine` de SQLModel y pasarle la URL de la base de datos. 
 
@@ -77,7 +77,7 @@ engine = create_engine(sqlite_url, echo=True)
 
 En este ejemplo, estamos usando el argumento `echo=True` para que el motor de la base de datos imprima todas las consultas SQL que se ejecutan en la consola, es particularmente útil para depurar y entender lo que está pasando en la base de datos.
 
-**Nota:** El motor de la base de datos (engine) es un objeto que se encarga de la comunicación con la base de datos y de manejar las conexiones, se crea una sola vez y se reutiliza en toda la app.
+**Nota:** El motor de la base de datos (`engine`) es un objeto que se encarga de la comunicación con la base de datos y de manejar las conexiones, se crea una sola vez y se reutiliza en toda la app.
 
 ### Paso 4: Crear la base de datos y la tabla
 
@@ -225,7 +225,7 @@ En un bloque `with`, creamos una sesión, pasando `engine` como parámetro.
 
 Luego utilizamos el método de `model_validate()` para crear un objeto de tipo `Reservation` a partir del objeto de tipo `ReservationBase` que recibimos en el endpoint.
 
-Luego con los métodos `add()`, `commit()` y `refresh()` de la sesión agregamos, guardamos y refrescamos la reserva en la base de datos y finalmente la retornamos. 
+Luego con los métodos `add()`, `commit()` y `refresh()` de la sesión agregamos, guardamos y refrescamos la reserva en la base de datos y finalmente la retornamos.
 
 La sesión se cerrará automáticamente al final del bloque *with*.
 
