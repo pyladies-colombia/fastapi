@@ -320,9 +320,4 @@ Recuerda, la práctica hace al maestro. 🙇‍♀️ ¡Buena suerte con tu reto
 📝 **Tutorial de SQLModel**: Consulta el capítulo de [`Tutorial - UserGuide`](https://sqlmodel.tiangolo.com/tutorial/) en la documentación oficial de SQLModel si quieres aprender más sobre SQLModel.
 
 
-//
-
-create the data in Python, in memory (in a variable)
-save/send the data to the database
-
 
