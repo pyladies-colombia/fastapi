@@ -75,7 +75,7 @@ sqlite_url = f"sqlite:///{sqlite_file_name}"
 engine = create_engine(sqlite_url, echo=True)
 ```
 
-En este ejemplo, estamos usando el argumento `echo=True` para que el motor de la base de datos imprima todas las consultas SQL que se ejecutan en la consola, es particularmente útil para depurar y entender lo que está pasando en la base de datos.'
+En este ejemplo, estamos usando el argumento `echo=True` para que el motor de la base de datos imprima todas las consultas SQL que se ejecutan en la consola, es particularmente útil para depurar y entender lo que está pasando en la base de datos.
 
 **Nota:** El motor de la base de datos (engine) es un objeto que se encarga de la comunicación con la base de datos y de manejar las conexiones, se crea una sola vez y se reutiliza en toda la app.
 
@@ -217,9 +217,18 @@ Ahora que tenemos el modelo de `ReservationBase` lo podemos usar en el nuevo end
 
 ### Paso 8: Guardar la reserva
 
-Antes de poder guardar la reserva en la base de datos, necesitamos importar `Session` de SQLModel y luego crear una sesión con el motor de la base de datos, en nuestro ejemplo lo haremos en el mismo endpoint. 
+Lo primero que necesitamos es importar `Session` de SQLModel y luego crear una sesión con el motor de la base de datos (`engine`), en nuestro ejemplo lo haremos en el mismo endpoint.
 
 **Nota:** La sesión (session) usa el motor de la base de datos (engine) para comunicarse con la base de datos y se usa una por request.
+
+En un bloque `with`, creamos una sesión, pasando `engine` como parámetro. 
+
+Luego utilizamos el método de `model_validate()` para crear un objeto de tipo `Reservation` a partir del objeto de tipo `ReservationBase` que recibimos en el endpoint.
+
+Luego con los métodos `add()`, `commit()` y `refresh()` de la sesión agregamos, guardamos y refrescamos la reserva en la base de datos y finalmente la retornamos. 
+
+La sesión se cerrará automáticamente al final del bloque *with*.
+
 
 ```python
 # main.py
@@ -259,7 +268,7 @@ def create_reservation(reservation: ReservationBase):
 
 ## Paso 9: Leer las reservas
 
-Primero, importa `select` de SQLModel y luego crea un nuevo endpoint para leer las reservas:
+Primero, importa `select` de SQLModel y luego crea un nuevo endpoint para leer las reservas. De igual manera que en el paso anterior, primero creamos una sesión y luego ejecutamos una consulta para obtener todas las reservas en la base de datos.
 
 ```python
 # main.py
