@@ -22,8 +22,6 @@ ORM (Object Relational Mapping), es una herramienta de programación que permite
 
 Imagina que necesitas gestionar la base de datos de tu app de reservas. 
 
-Antes de comenzar, crea un archivo `main.py` y sigue los pasos a continuación.
-
 ### Paso 1: Instalar SQLModel
 
 ```bash
@@ -32,7 +30,11 @@ pip install sqlmodel
 
 ### Paso 2: Crear un modelo de SQLModel 
 
+En un archivo `main.py` crea un modelo de SQLModel para la tabla `reservation`:
+
 ```python
+# main.py
+
 from sqlmodel import Field, SQLModel
 from datetime import datetime
 
@@ -54,6 +56,8 @@ Para crear el motor de la base de datos, necesitas importar la función `create_
 Cada URL de base de datos tiene un formato específico, por ejemplo, para SQLite, (que es la base de datos que usaremos en este ejemplo), la URL es `sqlite:///` seguido del nombre del archivo de la base de datos, en este caso, `database.db`:
 
 ```python
+# main.py
+
 from sqlmodel import Field, SQLModel, create_engine
 from datetime import datetime
 
@@ -78,6 +82,8 @@ En este ejemplo, estamos usando el argumento `echo=True` para que el motor de la
 Crear el motor de base de datos no crea el archivo de la base de datos, para crear la base de datos y la tabla, necesitas ejecutar `SQLModel.metadata.create_all(engine)`, esto creará el archivo `database.db` y la tabla `reservation` en la base de datos.
 
 ```python
+# main.py
+
 from sqlmodel import Field, SQLModel, create_engine
 from datetime import datetime
 
@@ -144,6 +150,8 @@ Esto significa que la tabla `reservation` fue creada con éxito en la base de da
 Como cada modelo de SQLModel es equivalente a un modelo de Pydantic, se puede usar para crear un endpoint en FastAPI. Sin embargo, si usamos el modelo que creamos anterioremente, se le estaría permitiendo al usuario escoger el `id` de la reserva en la base de datos, pero queremos que sea la base de datos la que decida el `id` en lugar del usuario. Para evitar esto, podemos crear un modelo adicional que no incluya el `id` al que llamaremos `ReservationBase`:
 
 ```python
+# main.py
+
 from fastapi import FastAPI
 from sqlmodel import Field, SQLModel, create_engine
 from datetime import datetime
@@ -171,6 +179,8 @@ SQLModel.metadata.create_all(engine)
 Primero crea un app de FastAPI y luego crea un endpoint para crear una reserva:
 
 ```python
+# main.py
+
 from fastapi import FastAPI
 from sqlmodel import Field, SQLModel, create_engine
 from datetime import datetime
@@ -209,6 +219,8 @@ Ahora que tenemos el modelo de `ReservationBase` lo podemos usar en el nuevo end
 Lo primero que debes hacer es importar `Session` de SQLModel y luego crear una sesión con el motor de la base de datos, en nuestro ejemplo lo haremos en el mismo endpoint:
 
 ```python
+# main.py
+
 from fastapi import FastAPI
 from sqlmodel import Field, SQLModel, create_engine, Session
 from datetime import datetime
@@ -247,6 +259,8 @@ def create_reservation(reservation: ReservationBase):
 Primero, importa `select` de SQLModel y luego crea un nuevo endpoint para leer las reservas:
 
 ```python
+# main.py
+
 from fastapi import FastAPI
 from sqlmodel import Field, SQLModel, create_engine, Session, select
 from datetime import datetime
