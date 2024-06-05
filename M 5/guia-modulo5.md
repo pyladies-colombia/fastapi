@@ -22,6 +22,8 @@ Sin validación, nuestra API podría recibir datos incorrectos, lo que podría l
 
 Imagina que tienes una API que recibe datos de un formulario en tu app para gestionar reservas en un restaurante. Para asegurarnos de que los datos que recibimos son los correctos, necesitamos validarlos.
 
+Antes de comenzar, crea un archivo `main.py` y sigue los pasos a continuación.
+
 ### Paso 1: Importar BaseModel de Pydantic
 
 Para usar Pydantic en nuestra API, primero debemos importar la clase `BaseModel` de Pydantic:
@@ -87,9 +89,17 @@ async def create_reservation(reservation: Reservation):
     return reservation
 ```
 
-### Paso 5: Probar con los docs (Swagger UI)
+### Paso 5: Ejecutar el servidor
 
-Si vamos a la URL `/docs`, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
+Ejecuta el servidor con el siguiente comando:
+
+```bash
+fastapi dev main.py
+```
+
+### Paso 6: Probar con Swagger UI
+
+Una vez que el servidor esté en funcionamiento, podemos probar nuestra API en Swagger UI. Si vamos a la URL `http://127.0.0.1:8000/docs`, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
 
 El modelo de datos creado se refleja en la documentación de Swagger, mostrando los campos esperados y sus tipos.
 
