@@ -135,7 +135,7 @@ Puedes realizar la solicitud para listar tus repos de Github de la siguiente man
 >>> response.json()
 ```
 
-Github maneja las credeciales de manera diferente, las envia en las cabeceras usando la llave `Autorization`, 
+Github maneja las credeciales de manera diferente, las envía en las cabeceras usando la llave `Autorization`, 
 igual no es problema HTTPX puede manejarlo!
 
 Integrarlo a FastApi es muy sencillo, 
