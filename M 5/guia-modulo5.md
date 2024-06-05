@@ -39,6 +39,8 @@ El siguiente paso es definir un modelo de datos. Un modelo de datos es una clase
 Por ejemplo, si nuestra API recibe datos de una reservación, podríamos definir un modelo de datos como el siguiente:
 
 ```python
+# main.py
+
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -55,6 +57,7 @@ class Reservation(BaseModel):
 Pydantic nos permite añadir validaciones adicionales a nuestros campos utilizando `Field`. Por ejemplo, podemos añadir una validación para asegurarnos de que el campo `guests` sea mayor que 0 y menor que 10. Primero, importamos `Field` de Pydantic. Luego, añadimos la validación al campo `guests` utilizando los argumentos `gt` y `lt` en `Field`, que representan "greater than" (mayor que) y "less than" (menor que), respectivamente.
 
 ```python
+# main.py
 from pydantic import BaseModel, Field
 from datetime import datetime
 
@@ -71,6 +74,7 @@ class Reservation(BaseModel):
 Para usar este modelo de datos en nuestra API, declaramos el tipo de nuestro argumento con el modelo que creamos:
 
 ```python
+# main.py
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from datetime import datetime
