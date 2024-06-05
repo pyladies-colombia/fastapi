@@ -1,7 +1,7 @@
 # Módulo 8: Ejemplo Avanzado #1 - Integración con servicios externos
 
 
-### Creadora: Gustavo Díaz
+### Creador: Gustavo Díaz
 
 
 ## Descripción
@@ -114,4 +114,78 @@ Digo, de *Medellín*, pero bueno, aprovechando el error, el objeto `response` re
 
 ## Integración con FastAPI
 
-...work in progress...
+Como desarrollador, es posible que uses GitHub para tus proyectos o para aportar a otros proyectos. 
+¿Qué te parecería tener un servicio que liste tus repositorios? ¡GitHub tiene una API REST para eso!
+
+Nuevamente, vamos a necesitar una credencial. 
+En este caso, usaremos un `token` temporal que generaremos entrando a la página [GitHub Settings](https://github.com/settings/tokens). 
+Selecciona los permisos de `repo` y genera el token.
+
+![Github Token](GithubToken.png)
+
+Puedes realizar la solicitud para listar tus repos de Github de la siguiente manera.
+
+```py
+>>> token = '<YOUR_TOKEN>'
+>>> username = '<YOUR_GITHUB_USERNAME>'
+
+>>> headers = {'Authorization': f'token {token}'}
+>>> url = f'https://api.github.com/users/{username}/repos'
+>>> response = httpx.get(url, headers=headers)
+>>> response.json()
+```
+
+Github maneja las credeciales de manera diferente, las envia en las cabeceras usando la llave `Autorization`, 
+igual no es problema HTTPX puede manejarlo!
+
+Integrarlo a FastApi es muy sencillo, 
+crea un archivo main con el siguiente contenido y ejecuta el servidor como se ha explicado en anteriores modulos:
+
+```py
+# main.py
+from fastapi import FastAPI
+
+token = '<YOUR_TOKEN>'
+username = '<YOUR_GITHUB_USERNAME>'
+
+app = FastAPI()
+
+@app.get("/repos")
+async def root():
+    headers = {'Authorization': f'token {token}'}
+    url = f'https://api.github.com/users/{username}/repos'
+    response = httpx.get(url, headers=headers)
+    return response.json()
+```
+
+Accede a la documentación de FastApi ¡ya debes tener un endpoint para consultar directamente tus repositorios!
+
+¿Como modificarías el anterior código para manejar los errores? 
+recuerda que el objeto response el atributo `status_code`.
+
+
+## Ejercicios y profundización
+
+### HTTPX async
+
+Una de las fortalezas de HTTPX frente a otros clientes HTTP es su capacidad para ejecutarse con la sintaxis `async`. 
+Al usar `async`, la espera por las respuestas de las solicitudes HTTP no bloquea la recepción de nuevas solicitudes, 
+lo que mejora significativamente el rendimiento de nuestra aplicación. Sobre esto se hablará más en el módulo 11.
+
+Como ejercicio, se recomienda instalar la terminal de Python `ipython`. 
+Esta terminal permite usar la sintaxis `async`, por lo que podrás probar ejecutar HTTPX de la siguiente forma:
+
+```python
+>>> response = await httpx.get("https://official-joke-api.appspot.com/jokes/programming/random")
+>>> response.json()
+[{"type":"programming","setup":"Why did the programmer quit his job?","punchline":"Because he didn't get arrays.","id":18}]
+```
+
+En un script, no hay mucha diferencia en usar `await`, 
+pero te permitirá hacer pruebas para modificar luego el código del servidor.
+
+### Manejo de secretos
+
+No es buena práctica quemar las credenciales en el código, existen buenas prácticas para el manejo de la información que debería ser secreta. 
+Si como manejar la configuración y los secretos es de tu interes, te recomiendo consultar [Pydantic Settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#usage).
+¿Te gustaría un módulo sobre pydantic-settings?
