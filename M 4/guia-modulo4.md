@@ -1,4 +1,4 @@
-# Módulo 4 - Gestión de menús y uso de dependencias.
+# Módulo 4: Ejemplo básico #2 - Gestión de Menús y Uso de Dependencias
 
 ### Creadora: Nathaly Riaño
 
