@@ -9,9 +9,11 @@ class Reservation(BaseModel):
     email: str
     datetime: datetime
     guests: int = Field(gt=0, lt=10)
-    observation: str | None = None 
+    observation: str | None = None
+
 
 app = FastAPI()
+
 
 @app.post("/reservation/")
 async def create_reservation(reservation: Reservation):
