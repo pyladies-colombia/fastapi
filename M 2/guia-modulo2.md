@@ -120,8 +120,8 @@ Redoc es compatible con la especificación OpenAPI, lo que significa que puede i
 
 Puedes expandir esta aplicación añadiendo más rutas y funcionalidades siguiendo los modulos de este repositorio:
 
-- Módulos básicos: [M 3](../M%203/guia-modulo3.md), [M 4](../M%204/guia-modulo4.md), [M 5](../M%205/guia-modulo5.md)
-- Módulos intermedios: [M 6](../M%206/guia-modulo6.md), [M 7](../M%207/guia-modulo7.md)
+- Módulos básicos: [M 3](../M%203/guia-modulo3.md), [M 4](../M%204/guia-modulo4.md)
+- Módulos intermedios: [M 5](../M%205/guia-modulo5.md), [M 6](../M%206/guia-modulo6.md), [M 7](../M%207/guia-modulo7.md)
 - Módulos avanzados: [M 8](../M%208/guia-modulo8.md), [M 9](../M%209/guia-modulo9.md)
 - Módulos extra: [ME 10](../ME%2010/guia-modulo10.md), [ME 11](../ME%2011/guia-modulo11.md)
 
