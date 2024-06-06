@@ -1,6 +1,6 @@
 # Ejemplo 1 Lista generica
 
-from typing import Annotated, Any, Literal, Protocol, TypeAlias, TypeVar
+from typing import Annotated, Any, Literal, Protocol, TypeAlias, TypeVar, Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
@@ -83,8 +83,7 @@ def obtener_usuario(usuario_id: UsuarioID) -> Any:
 
 # Ejemplo 7: Uso de Protocol
 class Describible(Protocol):
-    def describir(self) -> str:
-        ...
+    def describir(self) -> str: ...
 
 
 class Producto:
