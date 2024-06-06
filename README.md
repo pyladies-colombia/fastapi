@@ -19,17 +19,17 @@ Este taller es autoguiado. Está diseñado para que puedas comenzar en cualquier
 
 ## Estructura del taller
 
-- M 1: [Fundamentos sobre APIs](../M%201/guia-modulo1.md)
-- M 2: [Configuración de tu PC y entorno](../M%202/guia-modulo2.md)
-- M 3: [Ejemplo #1 - Nivel básico](../M%203/guia-modulo3.md)
-- M 4: [Ejemplo #2 - Nivel básico](../M%204/guia-modulo4.md)
-- M 5: [Ejemplo #1 - Nivel intermedio](../M%205/guia-modulo5.md)
-- M 6: [Ejemplo #2 - Nivel intermedio](../M%206/guia-modulo6.md)
-- M 7: [Ejemplo #3 - Nivel intermedio](../M%207/guia-modulo7.md)
-- M 8: [Ejemplo #1 - Nivel avanzado](../M%208/guia-modulo8.md)
-- M 9: [Ejemplo #2 - Nivel avanzado](../M%209/guia-modulo9.md)
-- ME 10: [Anotaciones en Python](../M%2010/guia-modulo10.md)
-- ME 11: [Concurrencia y Async](../M%2011/guia-modulo11.md)
+- M 1: [Fundamentos sobre APIs](M%201/guia-modulo1.md)
+- M 2: [Configuración de tu PC y entorno](M%202/guia-modulo2.md)
+- M 3: [Ejemplo #1 - Nivel básico](M%203/guia-modulo3.md)
+- M 4: [Ejemplo #2 - Nivel básico](M%204/guia-modulo4.md)
+- M 5: [Ejemplo #1 - Nivel intermedio](M%205/guia-modulo5.md)
+- M 6: [Ejemplo #2 - Nivel intermedio](M%206/guia-modulo6.md)
+- M 7: [Ejemplo #3 - Nivel intermedio](M%207/guia-modulo7.md)
+- M 8: [Ejemplo #1 - Nivel avanzado](M%208/guia-modulo8.md)
+- M 9: [Ejemplo #2 - Nivel avanzado](M%209/guia-modulo9.md)
+- ME 10: [Anotaciones en Python](M%2010/guia-modulo10.md)
+- ME 11: [Concurrencia y Async](M%2011/guia-modulo11.md)
 
 > **Nota 1**: ME significa módulo extra.
 > 
