@@ -1,8 +1,9 @@
+import asyncio
+import json
+
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
-import asyncio
-from typing import Dict
-import json
+
 
 # Inicialización de la aplicación FastAPI
 app = FastAPI()
@@ -77,7 +78,7 @@ async def obtener():
 # Clase para manejar las conexiones de WebSocket
 class AdministradorConexiones:
     def __init__(self):
-        self.conexiones_activas: Dict[str, WebSocket] = {}
+        self.conexiones_activas: dict[str, WebSocket] = {}
 
     async def conectar(self, websocket: WebSocket, nombre_usuario: str):
         await websocket.accept()
@@ -120,6 +121,3 @@ async def endpoint_websocket(websocket: WebSocket, nombre_usuario: str = ""):
 # Instancia del administrador de conexiones
 administrador = AdministradorConexiones()
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)

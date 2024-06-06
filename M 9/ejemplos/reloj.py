@@ -1,7 +1,9 @@
+import asyncio
+import datetime
+
 from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
-import datetime
-import asyncio
+
 
 app = FastAPI()
 
@@ -38,9 +40,4 @@ async def websocket_endpoint(websocket: WebSocket):
         now = datetime.datetime.now().strftime("%I:%M:%S %p")
         await websocket.send_text(f"La hora es: {now}")
         await asyncio.sleep(1)
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
 
