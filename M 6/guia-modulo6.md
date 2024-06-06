@@ -345,7 +345,7 @@ Recuerda, la práctica hace al maestro. 🙇‍♀️ ¡Buena suerte con tu reto
 
 ## Recursos adicionales
 
-**Nota:** Este es un ejemplo simple con todo el código en un mismo archivo para facilitar el aprendizaje. Puedes consultar más en las siguientes fuentes donde aprenderás cómo estructurar mejor tus aplicaciones con múltiples archivos, manejar sesiones con Dependencies, agregar tests y profundizar más sobre otros temas:
+**Nota:** Este es un ejemplo simple con todo el código en un mismo archivo para facilitar el aprendizaje. Puedes consultar más en las siguientes fuentes donde aprenderás cómo estructurar mejor tus aplicaciones con múltiples archivos, manejar sesiones con *Dependencies*, agregar tests y profundizar más sobre otros temas:
 
 📝 **Introducción a bases de datos**: Consulta el capítulo de [`Intro to Databases`](https://sqlmodel.tiangolo.com/databases/) en la documentación oficial de SQLModel si quieres aprender más sobre bases de datos.
 
