@@ -127,4 +127,4 @@ Si quieres aprender más sobre cómo trabajar con parámetros de ruta y de consu
 
 📝 [`Path Parameters`](https://fastapi.tiangolo.com/tutorial/path-params/)
 
-📝 [`Query Parameters`](https://fastapi.tiangolo.com/tutorial/query-params//)
+📝 [`Query Parameters`](https://fastapi.tiangolo.com/tutorial/query-params/)
