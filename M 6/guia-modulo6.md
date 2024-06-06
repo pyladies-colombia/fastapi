@@ -4,7 +4,7 @@
 
 ## Descripción
 
-En este módulo aprenderemos a gestionar una base de datos en tu app de FastAPI con SQLModel. 
+En este módulo aprenderemos a gestionar una base de datos en tu app de FastAPI con SQLModel.
 
 Antes de comenzar, es importante que tengas algunos conocimientos básicos.
 
