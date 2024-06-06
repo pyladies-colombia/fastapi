@@ -4,7 +4,7 @@
 
 ## Descripción
 
-En este módulo, aprenderemos a crear una API sencilla con FastAPI para gestionar reservas de mesas en un restaurante. La API incluirá endpoints para obtener una reserva por ID y obtener todas las reservaciones, con la opción de limitar el número de resultados usando un parámetro de consulta (`query parameter`).
+En este módulo, aprenderemos a crear una API sencilla con FastAPI para gestionar reservas de mesas en un restaurante. La API incluirá endpoints para obtener una reserva por ID y obtener todas las reservas, con la opción de limitar el número de resultados usando un parámetro de consulta (*query parameter*).
 
 ### ¿Qué es un Endpoint?
 
@@ -12,11 +12,11 @@ Un endpoint es una URL específica en una API que actúa como un punto de acceso
 
 ### ¿Qué es un Parámetro de Ruta?
 
-Un parámetro de ruta es una parte de la URL que se utiliza para identificar un recurso específico. Por ejemplo, en la URL `/reservations/1`, el `1` es un parámetro de ruta que identifica una reservación específica por su ID.
+Un parámetro de ruta es una parte de la URL que se utiliza para identificar un recurso específico. Por ejemplo, en la URL `/reservations/3`, el `3` es un parámetro de ruta que identifica una reservación específica por su ID, en este caso, el ID `3`.
 
 ### ¿Qué es un Parámetro de Consulta?
 
-Un parámetro de consulta es una forma de proporcionar información adicional a un endpoint a través de la URL. Por ejemplo, en la URL `/reservations?limit=5`, el `limit=5` es un parámetro de consulta que limita el número de resultados a 5.
+Un parámetro de consulta es una forma de proporcionar información adicional a un endpoint a través de la URL. Por ejemplo, en la URL `/reservations/?limit=5`, el `limit=5` es un parámetro de consulta que limita el número de resultados a 5.
 
 ¿Estás lista? ⚡️ ¡Manos a la obra!
 
@@ -34,7 +34,6 @@ En un archivo `main.py`, crea una aplicación FastAPI con un endpoint para obten
 # main.py
 
 from fastapi import FastAPI, HTTPException
-from typing import List, Optional
 
 # Inicializa la aplicación FastAPI
 app = FastAPI()
@@ -49,7 +48,7 @@ reservations = [
 # Define una ruta para obtener una reservación específica por ID
 @app.get("/reservations/{reservation_id}")
 def get_reservation(reservation_id: int):
-    # Itera sobre las reservaciones para encontrar la que coincide con el ID proporcionado
+    # Itera sobre las reservas para encontrar la que coincide con el ID proporcionado
     for reservation in reservations:
         if reservation["reservation_id"] == reservation_id:
             # Si se encuentra la reservación, la retorna
@@ -60,13 +59,12 @@ def get_reservation(reservation_id: int):
 
 ### Paso 3: Añadir un Endpoint para listar reservas
 
-Añade un endpoint para listar todas las reservaciones, con la opción de limitar el número de resultados usando un parámetro de consulta (`query parameter`):
+Añade un endpoint para listar todas las reservas, con la opción de limitar el número de resultados usando un parámetro de consulta (`query parameter`):
 
 ```python
 # main.py
 
 from fastapi import FastAPI, HTTPException
-from typing import List, Optional
 
 # Inicializa la aplicación FastAPI
 app = FastAPI()
@@ -81,7 +79,7 @@ reservations = [
 # Define una ruta para obtener una reservación específica por ID
 @app.get("/reservations/{reservation_id}")
 def get_reservation(reservation_id: int):
-    # Itera sobre las reservaciones para encontrar la que coincide con el ID proporcionado
+    # Itera sobre las reservas para encontrar la que coincide con el ID proporcionado
     for reservation in reservations:
         if reservation["reservation_id"] == reservation_id:
             # Si se encuentra la reservación, la retorna
@@ -89,13 +87,13 @@ def get_reservation(reservation_id: int):
     # Si no se encuentra la reservación, lanza una excepción HTTP 404
     raise HTTPException(status_code=404, detail="Reservation not found")
 
-# Define una ruta para obtener todas las reservaciones con un límite opcional
+# Define una ruta para obtener todas las reservas con un límite opcional
 @app.get("/reservations/")
 def get_reservations(limit: int | None = None):
-    # Si se proporciona un límite, retorna solo ese número de reservaciones
+    # Si se proporciona un límite, retorna solo ese número de reservas
     if limit:
         return reservations[:limit]
-    # Si no se proporciona un límite, retorna todas las reservaciones
+    # Si no se proporciona un límite, retorna todas las reservas
     return reservations
 ```
 
@@ -111,11 +109,11 @@ fastapi dev main.py
 
 1. Abre tu navegador web y ve a http://127.0.0.1:8000/docs.
 2. Usa los botones "Try it out" en cada endpoint para interactuar con la API:
-    - GET /reservations/{reservation_id} para obtener una
-    - GET /reservations/ para listar reservas.
-
+    - GET /reservations/{reservation_id} para obtener una reserva.
+    - GET /reservations/ para listar multiples reservas.
 
 Ejemplo:
+
 - Visualización de los endpoints en Swagger UI.
 
 ![](./images/image_1.png)
@@ -136,7 +134,7 @@ Dentro de la función `get_reservation`, agrega una validación para verificar q
 
 ## Recursos adicionales
 
-Si quieres aprender más sobre cómo trabajar con parámetros de ruta y de consulta en FastAPI, puedes consultar los siguientes capítulos de la documentación oficial:
+Si quieres aprender más sobre cómo trabajar con parámetros de ruta y de consulta en FastAPI, puedes estudiar los siguientes capítulos de la documentación oficial:
 
 📝 [`Path Parameters`](https://fastapi.tiangolo.com/tutorial/path-params/)
 
