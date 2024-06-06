@@ -2,7 +2,6 @@
 
 ### Creador: Gustavo Díaz
 
-
 ## Descripción
 
 Ahora que has creado tu API, ¿cómo puedes usarla en otras aplicaciones? ¿Cómo integrarte con APIs de terceros? En este módulo, aprenderemos a consultar otras APIs para integrarlas en nuestro desarrollo.
