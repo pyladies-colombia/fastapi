@@ -181,7 +181,7 @@ Esta terminal permite usar la sintaxis `async`, por lo que podrás probar ejecut
 [{"type":"programming","setup":"Why did the programmer quit his job?","punchline":"Because he didn't get arrays.","id":18}]
 ```
 
-En un script, no hay mucha diferencia en usar `await`, 
+En un script, no hay mucha diferencia en usar `await`,
 pero te permitirá hacer pruebas para modificar luego el código del servidor.
 
 ### Manejo de secretos
