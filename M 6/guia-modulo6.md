@@ -12,7 +12,7 @@ Antes de comenzar, es importante que tengas algunos conocimientos básicos.
 
 <a href="https://sqlmodel.tiangolo.com/" target="_blank">SQLModel</a> es una herramienta diseñada para interactuar con bases de datos SQL en apps de FastAPI, combinando <a href="https://www.sqlalchemy.org/" target="_blank">SQLAlchemy</a> y <a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a>. Es el ORM recomendado por FastAPI para trabajar con bases de datos SQL, aunque no es exclusiva de FastAPI y puede ser utilizada independientemente.
 
-### ¿Qué es una ORM?
+### ¿Qué es un ORM?
 
 ORM (Object Relational Mapping), es una herramienta de programación que permite convertir datos entre una base de datos relacional y un lenguaje de programación, permite traducir de SQL a código Python y viceversa, todo usando clases y objetos.
 
