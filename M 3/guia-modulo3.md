@@ -6,19 +6,27 @@
 
 En este módulo, aprenderemos a crear una API sencilla con FastAPI para gestionar reservas de mesas en un restaurante. La API incluirá endpoints para obtener una reserva por ID y obtener todas las reservaciones, con la opción de limitar el número de resultados usando un parámetro de consulta (`query parameter`).
 
-## ¿Qué es un Endpoint?
+### ¿Qué es un Endpoint?
 
 Un endpoint es una URL específica en una API que actúa como un punto de acceso para realizar acciones como obtener, enviar, actualizar o eliminar datos en un sistema. Utiliza métodos HTTP (como GET, POST, PUT, DELETE) y puede recibir parámetros para especificar detalles adicionales.
+
+### ¿Qué es un Parámetro de Ruta?
+
+Un parámetro de ruta es una parte de la URL que se utiliza para identificar un recurso específico. Por ejemplo, en la URL `/reservations/1`, el `1` es un parámetro de ruta que identifica una reservación específica por su ID.
+
+### ¿Qué es un Parámetro de Consulta?
+
+Un parámetro de consulta es una forma de proporcionar información adicional a un endpoint a través de la URL. Por ejemplo, en la URL `/reservations?limit=5`, el `limit=5` es un parámetro de consulta que limita el número de resultados a 5.
 
 ¿Estás lista? ⚡️ ¡Manos a la obra!
 
 ## Ejemplo
 
-### Paso 1: Configurar el Entorno de Desarrollo
+### Paso 1: Configurar el entorno de desarrollo
 
 Antes de comenzar, asegúrate de tener tu entorno de desarrollo configurado. Te puedes guiar con el [Módulo 2](../M%202/guia-modulo2.md).
 
-### Paso 2: Añadir un Endpoint para Obtener una Reserva por ID
+### Paso 2: Añadir un Endpoint para obtener una reserva por ID
 
 En un archivo `main.py`, crea una aplicación FastAPI con un endpoint para obtener una reservación específica por ID:
 
@@ -50,7 +58,7 @@ def get_reservation(reservation_id: int):
     raise HTTPException(status_code=404, detail="Reservation not found")
 ```
 
-### Paso 3: Añadir un Endpoint para Listar Reservaciones
+### Paso 3: Añadir un Endpoint para listar reservas
 
 Añade un endpoint para listar todas las reservaciones, con la opción de limitar el número de resultados usando un parámetro de consulta (`query parameter`):
 
@@ -91,7 +99,7 @@ def get_reservations(limit: int | None = None):
     return reservations
 ```
 
-### Paso 4: Ejecutar el Servidor
+### Paso 4: Ejecutar el servidor
 
 Ejecuta el servidor con el siguiente comando:
 
@@ -109,14 +117,20 @@ fastapi dev main.py
 
 Ejemplo:
 - Visualización de los endpoints en Swagger UI.
+
 ![](./images/image_1.png)
+
 - Despliegue de la sección y clic en el botón "Try it out".
+
 ![](./images/image_2.png)
+
 - Prueba de GET.
+
 ![](./images/image_3.png)
 
+## ¿Aceptas un reto? 🤓
 
-## Aceptas un Reto 🤓
+Ahora que has creado una API básica para gestionar reservas de mesas en un restaurante, aquí tienes un reto para poner a prueba tus habilidades:
 
 Dentro de la función `get_reservation`, agrega una validación para verificar que el `reservation_id` proporcionado sea un número positivo.
 
