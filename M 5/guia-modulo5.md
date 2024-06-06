@@ -41,8 +41,10 @@ Por ejemplo, si nuestra API recibe datos de una reservación, podríamos definir
 ```python
 # main.py
 
-from pydantic import BaseModel
 from datetime import datetime
+
+from pydantic import BaseModel
+
 
 class Reservation(BaseModel):
     name: str
