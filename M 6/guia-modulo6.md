@@ -339,7 +339,8 @@ def read_reservations():
 
 ## Reto
 
-💡 Ahora es tu turno, crea un endpoint para eliminar una reserva.
+💡 Ahora es tu turno, crea un endpoint para eliminar una reserva. 
+Pista: https://sqlmodel.tiangolo.com/tutorial/delete/ - https://sqlmodel.tiangolo.com/tutorial/fastapi/delete/ 🔍️
 
 Recuerda, la práctica hace al maestro. 🙇‍♀️ ¡Buena suerte con tu reto! ✌️
 
