@@ -53,7 +53,7 @@ La clase `Reservation` es un modelo de SQLModel, el equivalente a una tabla SQL 
 
 ### Paso 3: Crear el motor de la base de datos (`engine`)
 
-Para crear el motor de la base de datos, necesitas importar la función `create_engine` de SQLModel y pasarle la URL de la base de datos. 
+Para crear el motor de la base de datos, necesitas importar la función `create_engine` de SQLModel y pasarle la URL de la base de datos.
 
 Cada URL de base de datos tiene un formato específico, por ejemplo, para SQLite, (que es la base de datos que usaremos en este ejemplo), la URL es `sqlite:///` seguido del nombre del archivo de la base de datos, en este caso, `database.db`:
 
