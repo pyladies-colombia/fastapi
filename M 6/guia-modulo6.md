@@ -351,7 +351,5 @@ Recuerda, la práctica hace al maestro. 🙇‍♀️ ¡Buena suerte con tu reto
 
 📝 **ORMs**: Consulta el capítulo de [`Database to Code (ORMs)`](https://sqlmodel.tiangolo.com/db-to-code/) en la documentación oficial de SQLModel si quieres profundizar más sobre ORMs.
 
-📝 **Tutorial de SQLModel**: Consulta el capítulo de [`Tutorial - UserGuide`](https://sqlmodel.tiangolo.com/tutorial/) en la documentación oficial de SQLModel si quieres aprender más sobre SQLModel.
-
-
+📝 **Tutorial de SQLModel**: Consulta el capítulo de [`Tutorial - User Guide`](https://sqlmodel.tiangolo.com/tutorial/) en la documentación oficial de SQLModel si quieres aprender más sobre SQLModel.
 
