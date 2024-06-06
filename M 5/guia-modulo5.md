@@ -16,7 +16,7 @@ La validación de datos nos permite asegurarnos de que los datos que recibimos s
 
 Sin validación, nuestra API podría recibir datos incorrectos, lo que podría llevar a errores en la aplicación.
 
-## Ejemplo 
+## Ejemplo
 
 **Nota:** Para este ejemplo, necesitas la versión 3.10 de Python. Puedes guiarte con el [Módulo 2](../M%202/guia-modulo2.md) para configurar tu entorno de desarrollo. 
 
