@@ -95,11 +95,11 @@ Los tipos genéricos permiten definir clases y funciones que pueden trabajar con
 ### Ejemplo 1: Lista Genérica
 
 ```python
-from typing import List, TypeVar
+from typing import TypeVar
 
 T = TypeVar('T')
 
-def invertir_lista(lista: List[T]) -> List[T]:
+def invertir_lista(lista: list[T]) -> list[T]:
     return lista[::-1]
 
 print(invertir_lista([1, 2, 3]))       # Output: [3, 2, 1]
@@ -142,7 +142,7 @@ print(procesar_datos_v2("hola"))   # Output: Procesado texto: hola
 #### Explicación
 `Union[int, str]` y `int | str` indican que la variable data puede ser un entero o una cadena.
 
-## `Annotated` para Metadatos.
+## `Annotated` para Metadatos
 `Annotated` permite agregar metadatos a los tipos, lo cual es útil para validación y documentación.
 
 ### Ejemplo 4: Uso de `Annotated` con Pydantic
@@ -236,7 +236,7 @@ Puedes encontrar algunos ejemplos básicos de implementaciones de tipos en el sc
 
 
 ### Conclusión
-Entender los tipos de datos es fundamental para escribir programas efectivos en Python. Estos conceptos básicos te ayudarán a gestionar y manipular datos de manera eficiente, adicional te ayudaran a evitar cometer errores de tipos con ayuda de tu IDE favorito.
+Entender los tipos de datos es fundamental para escribir programas efectivos en Python. Estos conceptos básicos te ayudarán a gestionar y manipular datos de manera eficiente, adicionalmente te ayudaran a evitar cometer errores de tipos con ayuda de tu IDE favorito.
 
 ### Reto
 #### Ya que has llegado al módulo extra de tipos, que tal si practicamos todo lo aprendido implementando los tipos que has visto en los módulos del 3 al 9, reescribe todos los ejemplos implementando las validaciones de tipos que más crees convenientes!
