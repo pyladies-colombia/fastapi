@@ -20,7 +20,7 @@ Un ORM (Object Relational Mapper), es una herramienta de programación que permi
 
 **Nota:** Para este ejemplo, necesitas la versión 3.10 o superior de Python. Puedes guiarte con el [Módulo 2](../M%202/guia-modulo2.md) para configurar tu entorno de desarrollo.
 
-Imagina que necesitas gestionar la base de datos de tu app de reservas. 
+Imagina que necesitas gestionar la base de datos de tu app de reservas.
 
 ### Paso 1: Instalar SQLModel
 
