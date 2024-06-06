@@ -292,9 +292,11 @@ Primero, importamos `select` de SQLModel y luego creamos un nuevo endpoint para 
 ```python
 # main.py
 
+from datetime import datetime
+
 from fastapi import FastAPI
 from sqlmodel import Field, SQLModel, create_engine, Session, select
-from datetime import datetime
+
 
 class ReservationBase(SQLModel):
     name: str
