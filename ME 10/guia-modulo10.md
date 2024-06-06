@@ -231,6 +231,9 @@ imprimir_descripcion(servicio)  # Output: Este es un servicio
 #### Explicación
 `Protocol` define una estructura que debe ser implementada por cualquier clase que use `Describible`.
 
+### FastAPI y tipos
+Puedes encontrar algunos ejemplos basicos de implementaciones de tipos en el script `fastapi_ejemplos.py`
+
 
 ### Conclusión
 Entender los tipos de datos es fundamental para escribir programas efectivos en Python. Estos conceptos básicos te ayudarán a gestionar y manipular datos de manera eficiente, adicional te ayudaran a evitar cometer errores de tipos con ayuda de tu IDE favorito.
