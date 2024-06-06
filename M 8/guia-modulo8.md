@@ -8,8 +8,9 @@ Ahora que has creado tu API, ¿cómo puedes usarla en otras aplicaciones? ¿Cóm
 
 ## Un cliente HTTP en Python, HTTPX
 
-Ya sabemos cómo realizar solicitudes a nuestra API mediante clientes gráficos. 
-En el módulo 2, vimos cómo FastAPI utiliza Swagger para ofrecernos una documentación interactiva que nos permite realizar estas solicitudes. Sin embargo, para poder integrar nuestas aplicaciones con aplicaciones de terceros, necesitaremos un cliente que nos permita automatizar estas solicitudes, por eso vamos a usar [HTTPX](https://www.python-httpx.org/)
+Ya sabemos cómo realizar solicitudes a nuestra API mediante clientes gráficos.
+
+En el módulo 2, vimos cómo FastAPI utiliza Swagger para ofrecernos una documentación interactiva que nos permite realizar estas solicitudes. Sin embargo, para poder integrar nuestas aplicaciones con aplicaciones de terceros, necesitaremos un cliente que nos permita automatizar estas solicitudes desde el código, por eso vamos a usar [HTTPX](https://www.python-httpx.org/).
 
 Con HTTPX vamos a poder realizar solicitudes HTTP usando la sintaxis más avanzada de python3, 
 lo primero que debemos hacer es instalar el paquete en nuestro entorno de desarrollo usando la terminal del sistema:
