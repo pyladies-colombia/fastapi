@@ -148,7 +148,6 @@ CREATE TABLE reservation (
 
 Esto significa que la tabla `reservation` fue creada con éxito en la base de datos `database.db` y se verá algo así (aunque por el momento aún no hay registros):
 
-
 | id       | name    | email             | datetime            | guests | observation   |
 | -------- | ------- | ----------------- | ------------------- | -------| ------------- |
 | 1        | Ana     |ana@domain.com     | 2024-06-04 22:52:56 | 2      | None          |
