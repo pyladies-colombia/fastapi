@@ -285,7 +285,7 @@ def create_reservation(reservation: ReservationBase):
         return db_reservation
 ```
 
-## Paso 9: Leer las reservas
+### Paso 9: Leer las reservas
 
 Primero, importamos `select` de SQLModel y luego creamos un nuevo endpoint para leer las reservas. De igual manera que en el paso anterior, primero creamos una sesión y luego ejecutamos una consulta para obtener todas las reservas en la base de datos.
 
@@ -336,6 +336,28 @@ def read_reservations():
         reservations = session.exec(select(Reservation)).all()
         return reservations
 ```
+
+### Paso 10: Ejecutar el servidor
+
+Ejecuta el servidor con el siguiente comando:
+
+```bash
+fastapi dev main.py
+```
+
+### Paso 11: Probar con Swagger UI
+
+Una vez que el servidor esté en funcionamiento, podemos probar nuestra API en Swagger UI. Si vamos a la URL `http://127.0.0.1:8000/docs`, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
+
+Intenta crear una reserva y luego listar todas las reservas. Todo debería funcionar correctamente. 🤓
+
+![](./images/image01.png)
+
+![](./images/image02.png)
+
+**Tip:** También puedes instalar DB Browser para SQLite para ver la tabla `reservation` y los registros que has creado, además de ejecutar consultas SQL directamente en la base de datos.
+
+![](./images/image03.png)
 
 ## Reto
 
