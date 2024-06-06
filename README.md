@@ -18,17 +18,17 @@ Este taller es autoguiado, está estructurado de una manera que puedas empezar p
 
 ## Estructura del taller
 
-- M 1: Fundamentos sobre APIs
-- M 2: Configuración de tu PC y entorno
-- M 3: Ejemplo #1 - Nivel básico
-- M 4: Ejemplo #2 - Nivel básico
-- M 5: Ejemplo #3 - Nivel básico
-- M 6: Ejemplo #1 - Nivel intermedio
-- M 7: Ejemplo #2 - Nivel intermedio
-- M 8: Ejemplo #1 - Nivel avanzado
-- M 9: Ejemplo #2 - Nivel avanzado
-- ME 10: Anotaciones en Python
-- ME 11: Concurrencia y Async
+- M 1: [Fundamentos sobre APIs](../M%201/guia-modulo1.md)
+- M 2: [Configuración de tu PC y entorno](../M%202/guia-modulo2.md)
+- M 3: [Ejemplo #1 - Nivel básico](../M%203/guia-modulo3.md)
+- M 4: [Ejemplo #2 - Nivel básico](../M%204/guia-modulo4.md)
+- M 5: [Ejemplo #3 - Nivel básico](../M%205/guia-modulo5.md)
+- M 6: [Ejemplo #1 - Nivel intermedio](../M%206/guia-modulo6.md)
+- M 7: [Ejemplo #2 - Nivel intermedio](../M%207/guia-modulo7.md)
+- M 8: [Ejemplo #1 - Nivel avanzado](../M%208/guia-modulo8.md)
+- M 9: [Ejemplo #2 - Nivel avanzado](../M%209/guia-modulo9.md)
+- ME 10: [Anotaciones en Python](../M%2010/guia-modulo10.md)
+- ME 11: [Concurrencia y Async](../M%2011/guia-modulo11.md)
 
 > **Nota 1**: ME significa módulo extra.
 **Nota 2:** Recuerda elegir el módulo que tu quieras para iniciar.
