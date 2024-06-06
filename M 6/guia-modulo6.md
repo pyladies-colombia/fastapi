@@ -319,6 +319,7 @@ SQLModel.metadata.create_all(engine)
 
 app = FastAPI()
 
+
 @app.post("/reservations/")
 def create_reservation(reservation: ReservationBase):
     with Session(engine) as session:
