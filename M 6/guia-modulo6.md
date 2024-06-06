@@ -1,4 +1,4 @@
-# Módulo 6b: Ejemplo Intermedio #2: - *Dependencies* de FastAPI para acceder a un Speakeasy
+# Módulo 6: Ejemplo Intermedio #2: - *Dependencies* de FastAPI para acceder a un Speakeasy
 
 ### Creadora: Nathaly
 
