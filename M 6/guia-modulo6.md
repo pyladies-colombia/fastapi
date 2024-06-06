@@ -329,6 +329,7 @@ def create_reservation(reservation: ReservationBase):
         session.refresh(db_reservation)
         return db_reservation
 
+
 @app.get("/reservations/")
 def read_reservations():
     with Session(engine) as session:
