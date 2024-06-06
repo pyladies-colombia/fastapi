@@ -174,7 +174,9 @@ Como ejercicio, se recomienda instalar la terminal de Python `ipython`.
 Esta terminal permite usar la sintaxis `async`, por lo que podrás probar ejecutar HTTPX de la siguiente forma:
 
 ```python
->>> response = await httpx.get("https://official-joke-api.appspot.com/jokes/programming/random")
+>>> import httpx
+>>> client = httpx.AsyncClient()
+>>> response = await client.get("https://official-joke-api.appspot.com/jokes/programming/random")
 >>> response.json()
 [{"type":"programming","setup":"Why did the programmer quit his job?","punchline":"Because he didn't get arrays.","id":18}]
 ```
