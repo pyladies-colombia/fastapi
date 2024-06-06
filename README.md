@@ -28,8 +28,8 @@ Este taller es autoguiado. Está diseñado para que puedas comenzar en cualquier
 - M 7: [Ejemplo #3 - Nivel intermedio](M%207/guia-modulo7.md)
 - M 8: [Ejemplo #1 - Nivel avanzado](M%208/guia-modulo8.md)
 - M 9: [Ejemplo #2 - Nivel avanzado](M%209/guia-modulo9.md)
-- ME 10: [Anotaciones en Python](M%2010/guia-modulo10.md)
-- ME 11: [Concurrencia y Async](M%2011/guia-modulo11.md)
+- ME 10: [Anotaciones en Python](ME%2010/guia-modulo10.md)
+- ME 11: [Concurrencia y Async](ME%2011/guia-modulo11.md)
 
 > **Nota 1**: ME significa módulo extra.
 > 
