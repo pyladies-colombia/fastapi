@@ -131,7 +131,7 @@ Por el contrario, si enviamos un campo con algún dato que no cumpla con las reg
 
 💡 Ahora es tu turno, añade validaciones adicionales a los campos del modelo de datos `Reservation`, asegúrate que el campo `name` no esté vacío y que el campo `observation` tenga una longitud máxima de 100 caracteres.
 
-Recuerda, la práctica hace al maestro. 🙇‍♀️ 
+Recuerda, la práctica hace al maestro. 🙇‍♀️
 ¡Buena suerte con tu reto! ✌️
 
 ## Recursos adicionales
