@@ -1,15 +1,17 @@
 # Ejemplo 1 Lista generica
 
-from typing import List, TypeVar, Union, Literal, Annotated, TypeAlias, Protocol, Any
+from typing import Annotated, Any, Literal, Protocol, TypeAlias, TypeVar
+
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 app = FastAPI()
 
+
 @app.post("/invertir/")
-def invertir_lista(lista: List[T]) -> List[T]:
+def invertir_lista(lista: list[T]) -> list[T]:
     return lista[::-1]
     # Para probar esto, envía una solicitud POST con una lista de enteros o cadenas.
     # Ejemplo de solicitud: POST /invertir/ con cuerpo: [1, 2, 3]
@@ -17,7 +19,8 @@ def invertir_lista(lista: List[T]) -> List[T]:
 
 # Ejemplo 2 uso de Union y operador `|`
 class DataModel(BaseModel):
-    data: Union[int, str]
+    data: Union[int, str]  # noqa: F821
+
 
 @app.post("/procesar/")
 def procesar_datos(data_model: DataModel) -> Any:
@@ -32,6 +35,7 @@ def procesar_datos(data_model: DataModel) -> Any:
 class DataModelV2(BaseModel):
     data: int | str
 
+
 @app.post("/procesar_v2/")
 def procesar_datos_v2(data_model: DataModelV2) -> Any:
     if isinstance(data_model.data, int):
@@ -45,6 +49,7 @@ def procesar_datos_v2(data_model: DataModelV2) -> Any:
 class Usuario(BaseModel):
     nombre: Annotated[str, Field(max_length=30)]
     edad: Annotated[int, Field(gt=0)]
+
 
 @app.post("/usuarios/")
 def crear_usuario(usuario: Usuario):
@@ -67,6 +72,7 @@ def obtener_estado(estado: Literal["activo", "inactivo", "pendiente"]) -> Any:
 # Ejemplo 6: Uso de TypeAlias
 UsuarioID: TypeAlias = int
 
+
 @app.get("/usuario/{usuario_id}")
 def obtener_usuario(usuario_id: UsuarioID) -> Any:
     return {"message": f"Obteniendo usuario con ID: {usuario_id}"}
@@ -75,19 +81,22 @@ def obtener_usuario(usuario_id: UsuarioID) -> Any:
 
 # Ejemplo 7: Uso de Protocol
 class Describible(Protocol):
-    def describir(self) -> str:
-        ...
+    def describir(self) -> str: ...
+
 
 class Producto:
     def describir(self) -> str:
         return "Este es un producto"
 
+
 class Servicio:
     def describir(self) -> str:
         return "Este es un servicio"
 
+
 def imprimir_descripcion(item: Describible) -> str:
     return item.describir()
+
 
 @app.get("/descripcion/")
 def obtener_descripcion(tipo: str) -> Any:
@@ -99,7 +108,9 @@ def obtener_descripcion(tipo: str) -> Any:
         return {"message": "Tipo de descripción no encontrado"}
     # Ejemplo de solicitud: GET /descripcion/?tipo=producto
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
     # abre tu navegador y ve a http://127.0.0.1:8000/docs para probar todos los ejemplos
