@@ -60,8 +60,10 @@ Cada URL de base de datos tiene un formato específico, por ejemplo, para SQLite
 ```python
 # main.py
 
-from sqlmodel import Field, SQLModel, create_engine
 from datetime import datetime
+
+from sqlmodel import Field, SQLModel, create_engine
+
 
 class Reservation(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
