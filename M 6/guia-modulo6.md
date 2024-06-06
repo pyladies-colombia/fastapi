@@ -247,9 +247,11 @@ La sesión se cerrará automáticamente al final del bloque `with`.
 ```python
 # main.py
 
+from datetime import datetime
+
 from fastapi import FastAPI
 from sqlmodel import Field, SQLModel, create_engine, Session
-from datetime import datetime
+
 
 class ReservationBase(SQLModel):
     name: str
