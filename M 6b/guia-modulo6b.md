@@ -104,3 +104,7 @@ def read_menu_item(item_id: int, token: str = Depends(get_token)):
 
 Agrega un endpoint para eliminar un ítem del menú, este se vería así:
     - DELETE `/menu_items/{item_id}` para eliminar un elemento del menú especificado por `item_id`.
+
+## Recursos adicionales
+
+📝 **Dependencies**: Consulta la sección de [`Dependencies`](https://fastapi.tiangolo.com/tutorial/dependencies/) en la documentación oficial de FastAPI si quieres profundizar más sobre las dependencias.
