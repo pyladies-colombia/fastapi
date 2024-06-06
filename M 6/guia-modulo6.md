@@ -174,6 +174,7 @@ class ReservationBase(SQLModel):
     guests: int
     observation: str | None = None
 
+
 class Reservation(ReservationBase, table=True):
     id: int = Field(default=None, primary_key=True)
 
