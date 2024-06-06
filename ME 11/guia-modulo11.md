@@ -3,7 +3,8 @@
 ### Creadora: William Gómez
 
 ## Descripción
-Este módulo proporciona una visión integral de cómo FastAPI maneja operaciones asíncronas y concurrentes para maximizar la eficiencia en aplicaciones web. 
+
+Este módulo proporciona una visión integral de cómo FastAPI maneja operaciones asíncronas y concurrentes para maximizar la eficiencia en aplicaciones web.
 
 ## ¿Qué es la programación asíncrona?
 Imagina que estás preparando una cena que incluye tres platos: una sopa, un asado y un postre. Cada uno de estos platos requiere diferentes tiempos de preparación y cocción. En lugar de preparar cada plato de principio a fin de manera secuencia, comienzas calentando el agua para la sopa. Mientras el agua está calentándose, no te quedas mirando la olla; en lugar de eso, empiezas a preparar los ingredientes para el asado. Una vez que el agua empieza a hervir, añades los ingredientes de la sopa y bajas el fuego para que se cocine lentamente. No necesitas supervisar constantemente la sopa; puedes establecer un temporizador y comenzar a trabajar en el postre. Este enfoque te permite avanzar en la preparación del postre sin tener que esperar a que los otros platos estén completos. Al final, cada plato continúa cocinándose en su propio tiempo. Revisas y ajustas los platos según sea necesario, pero en general, estás libre para manejar otras tareas o descansar mientras todo se cocina.
