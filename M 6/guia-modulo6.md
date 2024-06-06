@@ -91,8 +91,10 @@ Crear el motor de base de datos no crea el archivo de la base de datos, para cre
 ```python
 # main.py
 
-from sqlmodel import Field, SQLModel, create_engine
 from datetime import datetime
+
+from sqlmodel import Field, SQLModel, create_engine
+
 
 class Reservation(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
