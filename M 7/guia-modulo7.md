@@ -1,4 +1,4 @@
-# Módulo 7: Ejemplo intermedio #2 - Autenticación y Autorización
+# Módulo 7: Ejemplo intermedio #3 - Autenticación y Autorización
 
 ### Creadora: Carolina Gómez
 
