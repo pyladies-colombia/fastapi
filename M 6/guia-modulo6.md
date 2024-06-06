@@ -10,7 +10,7 @@ Antes de comenzar, es importante que tengas algunos conocimientos básicos.
 
 ### ¿Qué es SQLModel?
 
-<a href="https://sqlmodel.tiangolo.com/" target="_blank">SQLModel</a> es una herramienta diseñada para interactuar con bases de datos SQL en apps de FastAPI, combinando <a href="https://www.sqlalchemy.org/" target="_blank">SQLAlchemy</a> y <a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a>. Es la ORM recomendada por FastAPI para trabajar con bases de datos SQL, aunque no es exclusiva de FastAPI y puede ser utilizada independientemente.
+<a href="https://sqlmodel.tiangolo.com/" target="_blank">SQLModel</a> es una herramienta diseñada para interactuar con bases de datos SQL en apps de FastAPI, combinando <a href="https://www.sqlalchemy.org/" target="_blank">SQLAlchemy</a> y <a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a>. Es el ORM recomendado por FastAPI para trabajar con bases de datos SQL, aunque no es exclusiva de FastAPI y puede ser utilizada independientemente.
 
 ### ¿Qué es una ORM?
 
