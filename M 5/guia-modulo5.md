@@ -60,8 +60,11 @@ Pydantic nos permite añadir validaciones adicionales a nuestros campos utilizan
 
 ```python
 # main.py
-from pydantic import BaseModel, Field
+
 from datetime import datetime
+
+from pydantic import BaseModel, Field
+
 
 class Reservation(BaseModel):
     name: str
