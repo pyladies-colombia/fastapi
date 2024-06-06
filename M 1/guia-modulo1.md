@@ -1,4 +1,4 @@
-# Modulo 1 - Fundamentos de APIs
+# Módulo 1 - Fundamentos de APIs
 
 ### Creadora: Karo Ladino-Puerto
 
