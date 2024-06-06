@@ -1,10 +1,10 @@
-# Módulo 6b: Ejemplo Intermedio #2: - Gestión de Menús en un Speakeasy
+# Módulo 6b: Ejemplo Intermedio #2: - *Dependencies* de FastAPI para acceder a un Speakeasy
 
 ### Creadora: Nathaly
 
 ## Descripción
 
-En este módulo aprenderemos sobre la validación de acceso mediante un token en FastAPI, una herramienta que nos permite gestionar la lógica compartida y modularizar nuestro código. Exploraremos un ejemplo práctico donde implementamos un menú de un restaurante secreto (speakeasy) que requiere una clave de acceso para poder ver los elementos del menú.
+En este módulo aprenderemos sobre las *dependencies* (dependencias) de FastAPI, y las usaremos para validar un token que permita el acceso. Al hacerlo con dependencies podemos gestionar la lógica compartida y modularizar nuestro código. Exploraremos un ejemplo práctico donde implementamos un menú de un restaurante secreto (speakeasy) que requiere una clave de acceso para poder ver los elementos del menú.
 
 ## Ejemplo
 
@@ -40,7 +40,7 @@ menu_items = [
 
 ### Paso 2: Función para Validar el Token
 
-`get_token` es una función que valida la clave de acceso proporcionado y, si es incorrecto, lanza una excepción HTTP 401.
+`get_token` es una función que valida la clave de acceso proporcionada en un parametro de consulta llamado `token` y, si es incorrecto, lanza una excepción HTTP 401.
 
 ```python
 def get_token(token: str):
@@ -49,15 +49,31 @@ def get_token(token: str):
   return token
 ```
 
+Queremos que FastAPI ejecute esta función automaticamente antes de ejecutar los endpoints que requieran validación de acceso.
+Para lograrlo, vamos a utilizar esta función como una dependencia de FastAPI.
+`get_token` tiene un parámetro `token` de tipo `str`, cuando FastAPI ejecute esta función como una dependencia, automáticamente va a extraer el valor del parámetro de consulta (query) `token`.
+Es decir, si alguien va a la URL:
+```
+https://pyladies-restaurant.example.com/menu_items/?token=girlsjustwannahavepython
+```
+FastAPI va a extraer el valor `girlsjustwannahavepython` y lo va a pasar como argumento a la función `get_token`.
+También va a aparecer en la documentación automática con Swagger UI.
+Una función de dependencia puede tener los mismos parámetros que una función de un endpoint, y así puede extraer datos de los parámetros de consulta (query), del cuerpo del mensaje, etc.
+
 ### Paso 3: Endpoint para Listar los Elementos del Menú
 
-Este endpoint devuelve los elementos del menú solo si el token es válido.
+Para utilizar la función `get_token` como una dependencia de FastAPI, declaramos un nuevo parametro `token` en la función del endpoint. En vez de declarar el tipo como `str`, utilizamos `Annotated` y dentro de `Annotated` ponemos el tipo `str` y usamos `Depends(get_token)`.
+Con `Depends(get_token)` le decimos a FastAPI que la función `get_token` es una dependencia.
 
 ```python
-@app.get("/menu_items/", response_model=list[dict])
-def read_menu_items(token: str = Depends(get_token)):
+@app.get("/menu_items/")
+def read_menu_items(token: Annotated[str, Depends(get_token)]):
   return menu_items
 ```
+
+FastAPI va a ejecutar la función `get_token`, extraer los datos necesarios del mensaje (request), y va a pasar el resultado al parámetro que declaramos, en este caso también llamado `token`.
+
+Así, solo quienes tengan el `token` secreto de `girlsjustwannahavepython` podrán ver el menú del restaurante.
 
 ### Paso 4: Endpoint para Leer un Elemento del Menú por ID
 
@@ -76,7 +92,9 @@ def read_menu_item(item_id: int, token: str = Depends(get_token)):
 ### Paso 5: Probar la API desde Swagger UI
 
 1. Abre tu navegador web y ve a http://127.0.0.1:8000/docs.
+
 2. Usa los botones `Try it out` en cada endpoint para interactuar con la API:
+
     - GET `/menu_items/` para listar los elementos del menú.
     - GET `/menu_items/{item_id}` para obtener un elemento específico del menú por `item_id`.
 
