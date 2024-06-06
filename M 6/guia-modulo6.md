@@ -264,6 +264,7 @@ class ReservationBase(SQLModel):
 class Reservation(ReservationBase, table=True):
     id: int = Field(default=None, primary_key=True)
 
+
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
 
