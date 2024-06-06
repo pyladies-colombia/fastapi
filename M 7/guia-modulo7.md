@@ -8,15 +8,19 @@
 > enlace al documento te dice que **no tienes acceso** 🛑. ¿Cómo lo abrirías?
 
 En ese caso, podrías registrarte con tu cuenta de correo electrónico y luego verías el contenido del documento.
+
 En este proceso tuviste la oportunidad de usar los dos conceptos que veremos en esta guía, Autenticación y Autorización.
 
 ### ¿Qué es Autenticación?
+
 La autenticación es el proceso mediante el cual se verifica la identidad de un usuario.
 
 ### ¿Qué es Autorización?
+
 La autorización es el proceso mediante el cual se determina un usuario autenticado, a qué recursos podrá acceder.
 
 Para lograr esto en nuestras aplicaciones, podemos hacer uso de **OAuth2**, esta es una especificación que define diferentes maneras de manejar la Autorización y Autenticación de servicios.
+
 Puedes leer más sobre ella [aquí](https://oauth.net/2/).
 
 Vamos a ver un ejemplo para aplicar estos conceptos con **FastAPI**.
@@ -29,22 +33,10 @@ Imagina que tienes una aplicación en donde quieres agregar un sistema de autent
 
 ### Paso 1: Configuración del Entorno
 
-Primero, asegúrate de tener Python 3.10 instalado. Luego, crea un entorno virtual e instala FastAPI.
+Puedes guiarte con el [Módulo 2](../M%202/guia-modulo2.md) para configurar tu entorno de desarrollo. Asegúrate de tener Python 3.10 o superior.
 
-```bash
-# Crear un entorno virtual
-python -m venv venv
-
-# Activar el entorno virtual
-# En Windows
-venv\Scripts\activate
-# En macOS/Linux
-source venv/bin/activate
-
-# Instalar librerias
-pip install fastapi
-```
 ### Paso 2: Esqueleto de la aplicación
+
 Dentro de tu ambiente virtual crea un archivo llamado `main.py` con la siguiente información:
 
 ```python
@@ -68,38 +60,50 @@ Para correr el código anterior debes abrir una terminal y poner las siguientes 
 ```bash
 fastapi dev main.py
 ```
+
 Para validar que todo esté funcionando bien, debes ir a la siguiente URL en tu navegador: [http://127.0.0.1:8000/docs#/](http://127.0.0.1:8000/docs#/)
+
 ![](./images/image01.png)
 
 Puedes ver un candado en la parte derecha del endpoint, si le das clic, podrás agregar información de autenticación como usuario y contraseña:
+
 ![](./images/image02.png)
 
-Para entender un poco mejor el código anterior, vamos a ir paso a paso explicando cada línea, en esta oportunidad vamos a usar el 
+Para entender un poco mejor el código anterior, vamos a ir paso a paso explicando cada línea, en esta oportunidad vamos a usar el
 flujo de contraseña. Gráficamente sería algo así:
 ![](./images/password-flow.png)
 
 El usuario ingresa su nombre de usuario y contraseña y pulsa enter en la página web (cliente), luego esta información es enviada al servidor
-que válida si este usuario existe, en ese caso responde con un token de acceso, este podrá ser usado para identificar la autorización del usuario.
+que valida si este usuario existe, en ese caso responde con un token de acceso, este podrá ser usado para identificar la autorización del usuario.
 
-En esta línea creamos una instancia de `OAuth2PasswordBearer`, dado que vamos a usar un token tipo Bearer:
+En esta línea creamos un objeto de tipo `OAuth2PasswordBearer`, dado que vamos a usar un token tipo Bearer:
+
 ```
 ...
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 ...
 ```
+
 Para usar dicho token en esta línea lo agregamos como una dependencia del endpoint:
+
 ```
 async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
 ```
+
 **FastAPI** sabrá que puede usar esta dependencia para definir un esquema seguro en la documentación de la API.
+
 Internamente, se valida que la petición tenga un encabezado llamado `Authorization` con el valor `Bearer <token>`.
-Si este valor no es enviado se retorna un código de estado `HTTP 401 UNAUTHORIZED`. Si quieres saber más sobre 
+
+Si este valor no es enviado se retorna un código de estado `HTTP 401 UNAUTHORIZED`. Si quieres saber más sobre
 los códigos de estado de HTTP puedes ver [este enlace](https://developer.mozilla.org/es/docs/Web/HTTP/Status).
 
 ### Paso 3: Envío de usuario y contraseña
+
 OAuth2 especifica que el usuario y contraseña deben enviarse como `username` y `password` y de tipo `FormData`.
+
 Si quieres conocer más sobre este tipo puedes leer la siguiente información: [Usando Objetos FormData](https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest_API/Using_FormData_Objects).
-Esto lo podemos lograr en **FastAPI** utilizando una instancia de `OAuth2PasswordRequestForm`.
+
+Esto lo podemos lograr en **FastAPI** utilizando un objeto de tipo `OAuth2PasswordRequestForm`.
 
 Vamos a sobreescribir el contenido del archivo `main.py` con la siguiente información:
 
@@ -132,6 +136,7 @@ app = FastAPI()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 ```
+
 En el archivo `main.py`, vamos a crear un modelo de Pydantic para el usuario:
 
 ```python
@@ -144,7 +149,9 @@ class User(BaseModel):
     disabled: bool | None = None
 
 ```
+
 Luego vamos a crear las siguientes funciones para obtener información del usuario:
+
 ```python
 # hash de la contraseña
 def fake_hash_password(password: str):
@@ -184,6 +191,7 @@ async def get_current_active_user(
 ```
 
 Ahora vamos a crear el endpoint para hacer la autenticación de la aplicación:
+
 ```python
 @app.post("/token")
 async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
@@ -200,10 +208,13 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
 
 Esta función primero obtiene el `username` del usuario y valida que el usuario exista, en caso tal de que no,
 se lanza una excepción diciendo que el usuario es incorrecto.
-Luego válida que la contraseña sea correcta, en caso de que no, también lanza una excepción.
+
+Luego valida que la contraseña sea correcta, en caso de que no, también lanza una excepción.
+
 Finalmente, si el usuario y contraseña existen, se retorna un token de acceso.
 
 Ahora vamos a agregar el endpoint para ver la información del usuario que ha accedido a nuestra aplicación:
+
 ```python
 @app.get("/users/me")
 async def read_users_me(
@@ -213,17 +224,23 @@ async def read_users_me(
 ```
 
 Vamos a probar nuestro código, abre la siguiente URL [http://127.0.0.1:8000/docs]( http://127.0.0.1:8000/docs):
+
 1. Clic en el botón de `Authorize`
 2. Ingresa el usuario: `johndoe`
 3. Ingresa la contraseña: `secret`
+
 ![](./images/image04.png)
+
 4. Da clic en el botón `Authorize` y verás lo siguiente:
+
 ![](./images/image05.png)
 
 Ahora puedes ir al endpoint `/users/me` y darle clic en la opción `Execute` y podrás ver la información de nuestro usuario de prueba:
+
 ![](./images/image06.png)
 
 Si le das clic al icono del candado y luego al botón `Logout`, y ejecutas de nuevo la petición como indicamos anteriormente obtendrás el siguiente error:
+
 ```
 {
   "detail": "Not authenticated"
@@ -231,6 +248,7 @@ Si le das clic al icono del candado y luego al botón `Logout`, y ejecutas de nu
 ```
 
 Ahora intenta ingresar nuestro segundo usuario, autentícate con este usuario y luego llama al endpoint de `/users/me`:
+
 ```
 Usuario: alice
 Contraseña: secret2
@@ -239,42 +257,53 @@ Contraseña: secret2
 ¿Qué sucede?
 
 ### Paso 4: OAuth2 con contraseña (usando hashing) y Bearer con JWT
-En la siguiente sección vamos a agregarle una capa de seguridad a nuestra aplicación, utilizando hash para que el almacenamiento 
+
+En la siguiente sección vamos a agregarle una capa de seguridad a nuestra aplicación, utilizando hash para que el almacenamiento
 de nuestras contraseñas sea más seguro y usando JWT (JSON Web Tokens).
 
 #### ¿Qué son los JSON Web Tokens (JWT)?
+
 Este es un estándar para codificar objetos JSON y que se puedan transmitir de una forma segura.
 La información no está encriptada, o sea que cualquiera puede ver el contenido, pero si se encuentra firmada.
+
 Esto quiere decir que si tú creas un token, podrías validar si este fue cambiado o si es un token válido.
+
 Así luce un JWT:
+
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ```
+
 Si quieres saber más sobre la estructura de un JWT, puedes ver el [siguiente link](https://jwt.io/introduction).
 
 Para usar JWT en nuestra aplicación debemos instalar la libreria [**PyJWT**](https://pypi.org/project/PyJWT/), en tu ambiente virtual escribe lo siguiente:
+
 ```
 pip install pyjwt
 ```
 
-En nuestro ejemplo hemos manejado el hash de las contraseñas como unos caracteres adicionales que se pone al inicio de la contraseña, 
+En nuestro ejemplo hemos manejado el hash de las contraseñas como unos caracteres adicionales que se pone al inicio de la contraseña,
 pero esta práctica no es segura, por lo que usaremos una librería que nos permitirá que la contraseña original no sea mostrada,
 en cambio, tendremos una nueva secuencia de caracteres generada por la librería, lo que nos permitirá que si en una ambiente real
 de producción alguien acceda a nuestra base de datos, no tenga la información sensible de los usuarios como contraseñas en texto plano.
 
 La librería que usaremos se llama [**PassLib**](https://pypi.org/project/passlib/), y el algoritmo para el hashing que se recomienda es Bcrypt. Puedes instalarla con el siguiente comando:
+
 ```
 pip install "passlib[bcrypt]"
 ```
+
 Para esta nueva versión de nuestro ejemplo puedes crear un nuevo archivo `main.py` y sobreescribir el anterior con otro nombre,
 en el repositorio hemos nombrado el paso anterior como `main_basic.py`.
 
 Primero vamos a crear una llave secreta aleatorea para firmar nuestros JWT, abre una terminal y pon el siguiente comando:
+
 ```
 openssl rand -hex 32
 ```
 
 Copia la secuencia de caracteres que se genera y pégala en la variable `SECRET_KEY` que crearemos a continuación:
+
 ```python
 from datetime import datetime, timedelta, timezone
 from typing import Annotated
@@ -305,9 +334,11 @@ fake_users_db = {
 ```
 
 Como puedes observar en la variable `fake_users_db`, el campo `hashed_password`, tiene una version diferente de la contraseña del usuario.
+
 Así es como lucen ahora nuestras contraseñas después de aplicarles el proceso de hashing.
 
 Ahora vamos a crear un modelo de Pydantic para el token y unas funciones para acceder a dicho token:
+
 ```python
 
 class Token(BaseModel):
@@ -374,8 +405,11 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
+
 ```
+
 Ahora vamos a modificar nuestras funciones para obtener los usuarios y usaremos JWT:
+
 ```python
 async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     credentials_exception = HTTPException(
@@ -404,11 +438,13 @@ async def get_current_active_user(
         raise HTTPException(status_code=400, detail="Usuario Inactivo")
     return current_user
 ```
-Como puedes observar en la función `get_current_user`, se hace una descodificación del token del usuario y se valida 
+
+Como puedes observar en la función `get_current_user`, se hace una descodificación del token del usuario y se valida
 que si exista. La llave `sub`del token es usada para poner la identificación del usuario, en este caso el `username`.
 
-Nuestros endpoints también cambian un poco al usar JWT, en este caso el endpoint `/token` ahora genera un token que expira 
+Nuestros endpoints también cambian un poco al usar JWT, en este caso el endpoint `/token` ahora genera un token que expira
 después de ciertos minutos, y tiene la información del usuario:
+
 ```python
 @app.post("/token")
 async def login_for_access_token(
@@ -440,23 +476,31 @@ async def read_own_items(
 ):
     return [{"item_id": "Foo", "owner": current_user.username}]
 ```
+
 Ahora sí, es momento de validar nuestra aplicación, recuerda que para correrla debes ejecutar el comando:
+
 ```bash
 fastapi dev main.py
 ```
+
 Abre la siguiente URL [http://127.0.0.1:8000/docs]( http://127.0.0.1:8000/docs) y verás algo asi:
+
 ![](./images/image07.png)
+
 1. Clic en el botón de `Authorize`
 2. Ingresa el usuario: `johndoe`
 3. Ingresa la contraseña: `secret`
+
 ![](./images/image08.png)
 
 Ahora puedes ir al endpoint `/users/me` y darle clic en la opción `Execute` y podrás ver la información de nuestro usuario de prueba:
+
 ![](./images/image09.png)
 
 Si abres el `developer tools`del navegador, haciendo clic derecho `Inspect` o Inspeccionar, y luego yendo a Network,
 puedes ver que cada vez que le des clic a `Execute` se envía nuestro token de acceso:
+
 ![](./images/image10.png)
 
-Una vez pasados los 30 minutos desde que generamos nuestro token, podrás ver que este ya no es válido y debes generar uno 
+Una vez pasados los 30 minutos desde que generamos nuestro token, podrás ver que este ya no es válido y debes generar uno
 nuevo para consultar el endpoint `/users/me`.
