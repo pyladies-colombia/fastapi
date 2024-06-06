@@ -161,9 +161,11 @@ Como cada modelo de SQLModel es equivalente a un modelo de Pydantic, se puede us
 ```python
 # main.py
 
+from datetime import datetime
+
 from fastapi import FastAPI
 from sqlmodel import Field, SQLModel, create_engine
-from datetime import datetime
+
 
 class ReservationBase(SQLModel):
     name: str
