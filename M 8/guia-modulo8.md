@@ -186,6 +186,7 @@ pero te permitirá hacer pruebas para modificar luego el código del servidor.
 
 ### Manejo de secretos
 
-No es buena práctica quemar las credenciales en el código, existen buenas prácticas para el manejo de la información que debería ser secreta. 
+No es buena práctica quemar las credenciales en el código, existen buenas prácticas para el manejo de la información que debería ser secreta.
+
 Si como manejar la configuración y los secretos es de tu interes, te recomiendo consultar [Pydantic Settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#usage).
 ¿Te gustaría un módulo sobre pydantic-settings?
