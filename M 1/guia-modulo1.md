@@ -23,8 +23,6 @@ Vamos a empezar con algo que seguramente te parecerá útil y cercano: cómo ges
         - **PUT**: Para actualizar datos existentes (por ejemplo, cambiar la hora de una reserva).
         - **DELETE**: Para eliminar datos (por ejemplo, cancelar una reserva).
 
-[Imagen pendiente]
-
 ### Diagramación de una API
 
 Volvamos al escenario que nos estamos imaginando, tienes un restaurante y quieres permitir que los clientes reserven mesas desde sus teléfonos móviles. Aquí es donde entra la API:
@@ -33,7 +31,7 @@ Volvamos al escenario que nos estamos imaginando, tienes un restaurante y quiere
 2. **API**: El puente entre la aplicación móvil y el sistema del restaurante.
 3. **Servidor**: El sistema del restaurante donde se guardan y gestionan las reservas.
 
-[Imagen pendiente]
+![Img1.png](./media/Img1.png)
 
 ### Usos de las APIs
 
