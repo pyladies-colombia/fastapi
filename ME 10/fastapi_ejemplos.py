@@ -17,7 +17,7 @@ def invertir_lista(lista: list[T]) -> list[T]:
     # Ejemplo de solicitud: POST /invertir/ con cuerpo: [1, 2, 3]
 
 
-# Ejemplo 2 uso de Union y operador `|`
+# Ejemplo 2 uso de Union
 class DataModel(BaseModel):
     data: Union[int, str]  # noqa: F821
 
@@ -25,9 +25,9 @@ class DataModel(BaseModel):
 @app.post("/procesar/")
 def procesar_datos(data_model: DataModel) -> Any:
     if isinstance(data_model.data, int):
-        return {"message": f"Procesado número: {data_model.data}"}
+        return {"message": f"Número procesado: {data_model.data}"}
     elif isinstance(data_model.data, str):
-        return {"message": f"Procesado texto: {data_model.data}"}
+        return {"message": f"Texto procesado: {data_model.data}"}
     # Ejemplo de solicitud: POST /procesar/ con cuerpo: {"data": 42} o {"data": "hola"}
 
 
@@ -39,16 +39,18 @@ class DataModelV2(BaseModel):
 @app.post("/procesar_v2/")
 def procesar_datos_v2(data_model: DataModelV2) -> Any:
     if isinstance(data_model.data, int):
-        return {"message": f"Procesado número: {data_model.data}"}
+        return {"message": f"Número procesado: {data_model.data}"}
     elif isinstance(data_model.data, str):
-        return {"message": f"Procesado texto: {data_model.data}"}
+        return {"message": f"Texto procesado: {data_model.data}"}
     # Ejemplo de solicitud: POST /procesar_v2/ con cuerpo: {"data": 42} o {"data": "hola"}
 
 
 # Ejemplo 4: Uso de Annotated con Pydantic
 class Usuario(BaseModel):
-    nombre: Annotated[str, Field(max_length=30)]
-    edad: Annotated[int, Field(gt=0)]
+    nombre: Annotated[
+        str, Field(max_length=30), "Esto no puede superar los 30 caracteres"
+    ]
+    edad: Annotated[int, Field(gt=0), "Esto debe ser mayor que 0"]
 
 
 @app.post("/usuarios/")
@@ -81,7 +83,8 @@ def obtener_usuario(usuario_id: UsuarioID) -> Any:
 
 # Ejemplo 7: Uso de Protocol
 class Describible(Protocol):
-    def describir(self) -> str: ...
+    def describir(self) -> str:
+        ...
 
 
 class Producto:

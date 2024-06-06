@@ -84,7 +84,7 @@ A veces, necesitas convertir el tipo de una variable a otro tipo. Esto se llama 
   ```python
   precio = 19.99
   precio_entero = int(precio)  # Output: 19
-  ``` 
+  ```
 
 # Tipos de datos avanzados en Python
 
@@ -120,9 +120,9 @@ from typing import Union
 
 def procesar_datos(data: Union[int, str]) -> str:
     if isinstance(data, int):
-        return f"Procesado número: {data}"
+        return f"Número procesado: {data}"
     elif isinstance(data, str):
-        return f"Procesado texto: {data}"
+        return f"Texto procesado: {data}"
 
 print(procesar_datos(42))       # Output: Procesado número: 42
 print(procesar_datos("hola"))   # Output: Procesado texto: hola
@@ -132,9 +132,9 @@ print(procesar_datos("hola"))   # Output: Procesado texto: hola
 ```python
 def procesar_datos_v2(data: int | str) -> str:
     if isinstance(data, int):
-        return f"Procesado número: {data}"
+        return f"Número procesado: {data}"
     elif isinstance(data, str):
-        return f"Procesado texto: {data}"
+        return f"Texto procesado: {data}"
 
 print(procesar_datos_v2(42))       # Output: Procesado número: 42
 print(procesar_datos_v2("hola"))   # Output: Procesado texto: hola
@@ -237,3 +237,9 @@ Puedes encontrar algunos ejemplos básicos de implementaciones de tipos en el sc
 
 ### Conclusión
 Entender los tipos de datos es fundamental para escribir programas efectivos en Python. Estos conceptos básicos te ayudarán a gestionar y manipular datos de manera eficiente, adicional te ayudaran a evitar cometer errores de tipos con ayuda de tu IDE favorito.
+
+### Reto
+#### Ya que has llegado al módulo extra de tipos, que tal si practicamos todo lo aprendido implementando los tipos que has visto en los módulos del 3 al 9, reescribe todos los ejemplos implementando las validaciones de tipos que más crees convenientes!
+- Ejemplo: en el módulo 4, trata de agregar `Annotated` en todos los parámetros del servicio `/menu_items/{item_id}`, agregale solo un comentario para describir de que trata el parametro, asi puedes ver como funciona este tipo de anotación y como se refleja en `/docs`
+- Ejemplo: En el módulo 5, implementar un Literal dentro de la clase `Reservation` de pydantic, para limitar el campo `name` solo pueda aceptar los nombres de `["pepe", "carlos", "juan"]`
+- Continua implementando más tipos en todos los módulos restantes para que sigas practicando!
