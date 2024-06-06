@@ -14,7 +14,7 @@ Antes de comenzar, es importante que tengas algunos conocimientos básicos.
 
 ### ¿Qué es un ORM?
 
-ORM (Object Relational Mapping), es una herramienta de programación que permite convertir datos entre una base de datos relacional y un lenguaje de programación, permite traducir de SQL a código Python y viceversa, todo usando clases y objetos.
+Un ORM (Object Relational Mapper), es una herramienta de programación que permite convertir datos entre una base de datos relacional y un lenguaje de programación, permite traducir de SQL a código Python y viceversa, todo usando clases y objetos.
 
 ## Ejemplo
 
