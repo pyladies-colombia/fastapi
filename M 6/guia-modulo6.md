@@ -244,7 +244,6 @@ Luego con los métodos `add()`, `commit()` y `refresh()` de la sesión agregamos
 
 La sesión se cerrará automáticamente al final del bloque `with`.
 
-
 ```python
 # main.py
 
