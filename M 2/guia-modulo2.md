@@ -132,8 +132,8 @@ Puedes guardar las dependencias como `fastapi` y otras en un archivo `requiremen
 El archivo podría contener algo como:
 
 ```txt
-fastapi ==0.111.0
-sqlmodel ==0.0.19
+fastapi==0.111.0
+sqlmodel==0.0.19
 ```
 
 Luego de activar tu entorno virtual, puedes instalar todas las dependencias con:
