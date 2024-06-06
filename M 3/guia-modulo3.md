@@ -76,17 +76,6 @@ reservations = [
     {"reservation_id": 3, "name": "tiangolo", "date": "2024-06-03", "num_people": 3},
 ]
 
-# Define una ruta para obtener una reservación específica por ID
-@app.get("/reservations/{reservation_id}")
-def get_reservation(reservation_id: int):
-    # Itera sobre las reservas para encontrar la que coincide con el ID proporcionado
-    for reservation in reservations:
-        if reservation["reservation_id"] == reservation_id:
-            # Si se encuentra la reservación, la retorna
-            return reservation
-    # Si no se encuentra la reservación, lanza una excepción HTTP 404
-    raise HTTPException(status_code=404, detail="Reservation not found")
-
 # Define una ruta para obtener todas las reservas con un límite opcional
 @app.get("/reservations/")
 def get_reservations(limit: int | None = None):
