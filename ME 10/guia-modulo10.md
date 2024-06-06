@@ -1,13 +1,13 @@
-# Modulo 10
+# Módulo 10
 
-### Creador: Esteban Maya Cadavid
+## Creador: Esteban Maya Cadavid
 
 
-## ¿Qué son los tipos de datos?
+# ¿Qué son los tipos de datos?
 
 En Python, un **tipo de dato** define el tipo de valor que una variable puede almacenar. Esto ayuda a Python a saber qué operaciones se pueden realizar con los datos y a prevenir errores.
 
-## Tipos de datos básicos en Python
+# Tipos de datos básicos en Python
 
 ### 1. Números
 
@@ -86,7 +86,7 @@ A veces, necesitas convertir el tipo de una variable a otro tipo. Esto se llama 
   precio_entero = int(precio)  # Output: 19
   ``` 
 
-## Tipos en avanzados
+# Tipos de datos avanzados en Python
 
 ## Tipos Genéricos
 
@@ -232,7 +232,7 @@ imprimir_descripcion(servicio)  # Output: Este es un servicio
 `Protocol` define una estructura que debe ser implementada por cualquier clase que use `Describible`.
 
 ### FastAPI y tipos
-Puedes encontrar algunos ejemplos basicos de implementaciones de tipos en el script `fastapi_ejemplos.py`
+Puedes encontrar algunos ejemplos básicos de implementaciones de tipos en el script `fastapi_ejemplos.py`
 
 
 ### Conclusión
