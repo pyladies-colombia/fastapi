@@ -287,7 +287,7 @@ def create_reservation(reservation: ReservationBase):
 
 ## Paso 9: Leer las reservas
 
-Primero, importa `select` de SQLModel y luego crea un nuevo endpoint para leer las reservas. De igual manera que en el paso anterior, primero creamos una sesión y luego ejecutamos una consulta para obtener todas las reservas en la base de datos.
+Primero, importamos `select` de SQLModel y luego creamos un nuevo endpoint para leer las reservas. De igual manera que en el paso anterior, primero creamos una sesión y luego ejecutamos una consulta para obtener todas las reservas en la base de datos.
 
 ```python
 # main.py
