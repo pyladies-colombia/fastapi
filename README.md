@@ -8,13 +8,14 @@
 
 ## ¡Bienvenidas!
 
-Hola, hola, holaaaaa, bienvenida al taller de FastAPI. Gracias por estar aquí y leernos. Hemos creado este taller en Junio de 2024. Aquí puedes encontrar ejercicios para aprender sobre FastAPI. Que felicidad que podamos estar juntas en este camino, te deseamos lo mejor y si tienes dudas no dudes en unirte a la comunidad y compartirlas con nosotras, allí estaremos para ayudarte. 
+Hola, hola, holaaaaa, bienvenida al taller de FastAPI 🎉 Gracias por estar aquí y leernos. Hemos creado este taller en Junio de 2024. Aquí puedes encontrar ejercicios para aprender sobre FastAPI. ¡Qué alegría que estemos juntas en este camino! Te deseamos lo mejor y queremos que sepas que estamos aquí para ti. Si tienes alguna duda, no dudes en unirte a nuestra comunidad y compartirla con nosotras. Estamos listas para ayudarte en lo que necesites. 
 
-PyLadies Colombia canales: https://linktr.ee/pyladies_co
+Canales de [PyLadies Colombia](https://linktr.ee/pyladies_co)
+
 
 ## Metodología
 
-Este taller es autoguiado, está estructurado de una manera que puedas empezar por cualquier módulo e ir navegando por todo el mismo y por los niveles de los mismos. A continuación puedes ver la estructura del taller y decidir por cuál quieres empezar. 
+Este taller es autoguiado. Está diseñado para que puedas comenzar en cualquier módulo y navegar a través de todos ellos, así como por sus distintos niveles. A continuación, te presentamos la estructura del taller para que elijas por dónde quieres empezar.
 
 ## Estructura del taller
 
@@ -31,8 +32,8 @@ Este taller es autoguiado, está estructurado de una manera que puedas empezar p
 - ME 11: [Concurrencia y Async](../M%2011/guia-modulo11.md)
 
 > **Nota 1**: ME significa módulo extra.
-**Nota 2:** Recuerda elegir el módulo que tu quieras para iniciar.
 > 
+> **Nota 2:** Recuerda elegir el módulo con el que quieras empezar.
 
 ## **Para iniciar el taller necesitas**
 
@@ -53,4 +54,4 @@ Este taller es autoguiado, está estructurado de una manera que puedas empezar p
 
 ![License.png](./media/License.png)
 
-Este trabajo está debajo de la licencia [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+Este trabajo está bajo de la licencia [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
