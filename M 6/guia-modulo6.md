@@ -234,7 +234,7 @@ Ahora que tenemos el modelo de `ReservationBase` lo podemos usar en el nuevo end
 
 Lo primero que necesitamos es importar `Session` de SQLModel y luego crear una sesión con el motor de la base de datos (`engine`), en nuestro ejemplo lo haremos en el mismo endpoint.
 
-**Nota:** La sesión (`session`) usa el motor de la base de datos (`engine`) para comunicarse con la base de datos y se usa una por request.
+**Nota:** La sesión (`session`) usa el motor de la base de datos (`engine`) para comunicarse con la base de datos. Se usa una sesión por request.
 
 En un bloque `with`, creamos una sesión, pasando `engine` como parámetro. 
 
