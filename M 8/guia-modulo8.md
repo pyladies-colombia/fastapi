@@ -169,7 +169,8 @@ Una de las fortalezas de HTTPX frente a otros clientes HTTP es su capacidad para
 Al usar `async`, la espera por las respuestas de las solicitudes HTTP no bloquea la recepción de nuevas solicitudes, 
 lo que mejora significativamente el rendimiento de nuestra aplicación. Sobre esto se hablará más en el módulo 11.
 
-Como ejercicio, se recomienda instalar la terminal de Python `ipython`. 
+Como ejercicio, se recomienda instalar la terminal de Python `ipython`.
+
 Esta terminal permite usar la sintaxis `async`, por lo que podrás probar ejecutar HTTPX de la siguiente forma:
 
 ```python
