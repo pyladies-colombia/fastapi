@@ -6,8 +6,7 @@
 
 Ahora que has creado tu API, ¿cómo puedes usarla en otras aplicaciones? ¿Cómo integrarte con APIs de terceros? En este módulo, aprenderemos a consultar otras APIs para integrarlas en nuestro desarrollo.
 
-
-## Un cliente HTTP en python, HTTPX
+## Un cliente HTTP en Python, HTTPX
 
 Ya sabemos cómo realizar solicitudes a nuestra API mediante clientes gráficos. 
 En el módulo 2, vimos cómo FastAPI utiliza Swagger para ofrecernos una documentación interactiva que nos permite realizar estas solicitudes. Sin embargo, para poder integrar nuestas aplicaciones con aplicaciones de terceros, necesitaremos un cliente que nos permita automatizar estas solicitudes, por eso vamos a usar [HTTPX](https://www.python-httpx.org/)
