@@ -1,6 +1,6 @@
 # Módulo 5: Ejemplo básico #3 - Validación de datos con Pydantic 🕵🏻‍♀️
 
-### Creadora: Alejandra 
+### Creadora: Alejandra
 
 ## Descripción
 
