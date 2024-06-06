@@ -59,7 +59,7 @@ def get_reservation(reservation_id: int):
 
 ### Paso 3: Añadir un Endpoint para listar reservas
 
-Añade un endpoint para listar todas las reservas, con la opción de limitar el número de resultados usando un parámetro de consulta (`query parameter`):
+Añade un endpoint para listar todas las reservas, con la opción de limitar el número de resultados usando un parámetro de consulta (*query parameter*):
 
 ```python
 # main.py
