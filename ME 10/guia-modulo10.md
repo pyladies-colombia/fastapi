@@ -240,6 +240,6 @@ Entender los tipos de datos es fundamental para escribir programas efectivos en 
 
 ### Reto
 #### Ya que has llegado al módulo extra de tipos, que tal si practicamos todo lo aprendido implementando los tipos que has visto en los módulos del 3 al 9, reescribe todos los ejemplos implementando las validaciones de tipos que más crees convenientes!
-- Ejemplo: en el módulo 4, trata de agregar `Annotated` en todos los parámetros del servicio `/menu_items/{item_id}`, agregale solo un comentario para describir de que trata el parametro, asi puedes ver como funciona este tipo de anotación y como se refleja en `/docs`
+- Ejemplo: en el módulo 4, trata de agregar `Annotated` en todos los parámetros del servicio `/menu_items/{item_id}`, para indicar el numero de caracteres en un campo string o indicar que un numero debe ser positivo en `/docs`
 - Ejemplo: En el módulo 5, implementar un Literal dentro de la clase `Reservation` de pydantic, para limitar el campo `name` solo pueda aceptar los nombres de `["pepe", "carlos", "juan"]`
 - Continua implementando más tipos en todos los módulos restantes para que sigas practicando!
