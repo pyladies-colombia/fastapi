@@ -35,8 +35,10 @@ En un archivo `main.py` crea un modelo de SQLModel para la tabla `reservation`:
 ```python
 # main.py
 
-from sqlmodel import Field, SQLModel
 from datetime import datetime
+
+from sqlmodel import Field, SQLModel
+
 
 class Reservation(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
