@@ -80,9 +80,12 @@ Para usar este modelo de datos en nuestra API, declaramos el tipo de nuestro arg
 
 ```python
 # main.py
+
+from datetime import datetime
+
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
-from datetime import datetime
+
 
 class Reservation(BaseModel):
     name: str
@@ -91,7 +94,9 @@ class Reservation(BaseModel):
     guests: int = Field(gt=0, lt=10)
     observation: str | None = None 
 
+
 app = FastAPI()
+
 
 @app.post("/reservation/")
 async def create_reservation(reservation: Reservation):
