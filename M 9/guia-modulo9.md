@@ -391,6 +391,13 @@ fastapi dev chat.py --host 0.0.0.0
 
 De esa manera, tu servidor de prueba recibirá conexiones incluso desde otros computadores!
 
+Ahora, cuando ya estés lista para hacerlo, puedes hacer un pequeño cambio y correr la aplicación en modo *producción*, usando `fastapi run` en vez de `fastapi dev`.
+
+Para hacerlo ejecuta:
+```bash
+fastapi run chat.py
+```
+
 ### Resumen
 
 En este ejemplo, hemos creado una aplicación de chat en tiempo real donde las usuarias pueden conectarse, enviar mensajes y ver la lista de usuarias conectadas.
