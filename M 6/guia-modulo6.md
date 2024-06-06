@@ -194,9 +194,11 @@ Primero crea un app de FastAPI y luego agrega un endpoint para crear una reserva
 ```python
 # main.py
 
+from datetime import datetime
+
 from fastapi import FastAPI
 from sqlmodel import Field, SQLModel, create_engine
-from datetime import datetime
+
 
 class ReservationBase(SQLModel):
     name: str
