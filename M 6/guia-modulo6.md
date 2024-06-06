@@ -236,7 +236,7 @@ Lo primero que necesitamos es importar `Session` de SQLModel y luego crear una s
 
 **Nota:** La sesión (`session`) usa el motor de la base de datos (`engine`) para comunicarse con la base de datos. Se usa una sesión por request.
 
-En un bloque `with`, creamos una sesión, pasando `engine` como parámetro. 
+En un bloque `with`, creamos una sesión, pasando `engine` como parámetro.
 
 Luego utilizamos el método de `model_validate()` para crear un objeto de tipo `Reservation` a partir del objeto de tipo `ReservationBase` que recibimos en el endpoint.
 
