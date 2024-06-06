@@ -49,7 +49,7 @@ class Reservation(SQLModel, table=True):
     observation: str | None = None
 ```
 
-La clase `Reservation` es un modelo de SQLModel, el equivalente a una tabla SQL en código Python y cada atributo de la clase es equivalente a una columna de la tabla.
+La clase `Reservation` es un modelo de SQLModel, el equivalente a una tabla SQL en código Python, y cada atributo de la clase es equivalente a una columna de la tabla.
 
 ### Paso 3: Crear el motor de la base de datos (`engine`)
 
