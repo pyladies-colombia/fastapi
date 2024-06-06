@@ -189,7 +189,7 @@ SQLModel.metadata.create_all(engine)
 
 ### Paso 7: Crear un endpoint en FastAPI
 
-Primero crea un app de FastAPI y luego crea un endpoint para crear una reserva:
+Primero crea un app de FastAPI y luego agrega un endpoint para crear una reserva:
 
 ```python
 # main.py
