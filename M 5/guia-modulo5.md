@@ -1,82 +1,162 @@
-# Módulo 5: Ejemplo básico #3 - Validación de datos con Pydantic 🕵🏻‍♀️
+# Módulo 5: Ejemplo Intermedio #1: - Gestión de Base de Datos con SQLModel 🗃️
 
 ### Creadora: Alejandra
 
 ## Descripción
 
-En este módulo aprenderemos a validar datos en FastAPI usando Pydantic.
+En este módulo aprenderemos a gestionar una base de datos en tu app de FastAPI con SQLModel.
 
-### ¿Qué es Pydantic?
+Antes de comenzar, es importante que tengas algunos conocimientos básicos.
 
-<a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a> es una herramienta que nos permite definir modelos de datos y validar los datos que recibimos en nuestra API.
+### ¿Qué es SQLModel?
 
-### ¿Por qué es necesario validar datos en una API?
+<a href="https://sqlmodel.tiangolo.com/" target="_blank">SQLModel</a> es una herramienta diseñada para interactuar con bases de datos SQL en apps de FastAPI, combinando <a href="https://www.sqlalchemy.org/" target="_blank">SQLAlchemy</a> y <a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a>. Es el ORM recomendado por FastAPI para trabajar con bases de datos SQL, aunque no es exclusiva de FastAPI y puede ser utilizada independientemente.
 
-La validación de datos nos permite asegurarnos de que los datos que recibimos son los correctos y cumplen con ciertas reglas o restricciones. Por ejemplo, podemos validar que un campo sea de un cierto tipo, que cumpla con un formato específico, etc.
+### ¿Qué es un ORM?
 
-Sin validación, nuestra API podría recibir datos incorrectos, lo que podría llevar a errores en la aplicación.
+Un ORM (Object Relational Mapper), es una herramienta de programación que permite convertir datos entre una base de datos relacional y un lenguaje de programación, permite traducir de SQL a código Python y viceversa, todo usando clases y objetos.
 
 ## Ejemplo
 
-**Nota:** Para este ejemplo, necesitas la versión 3.10 de Python. Puedes guiarte con el [Módulo 2](../M%202/guia-modulo2.md) para configurar tu entorno de desarrollo.
+**Nota:** Para este ejemplo, necesitas la versión 3.10 o superior de Python. Puedes guiarte con el [Módulo 2](../M%202/guia-modulo2.md) para configurar tu entorno de desarrollo.
 
-Imagina que tienes una API que recibe datos de un formulario en tu app para gestionar reservas en un restaurante. Para asegurarnos de que los datos que recibimos son los correctos, necesitamos validarlos.
+Imagina que necesitas gestionar la base de datos de tu app de reservas.
 
-Antes de comenzar, crea un archivo `main.py` y sigue los pasos a continuación.
+### Paso 1: Instalar SQLModel
 
-### Paso 1: Importar BaseModel de Pydantic
-
-Para usar Pydantic en nuestra API, primero debemos importar la clase `BaseModel` de Pydantic:
-
-```python
-from pydantic import BaseModel
+```bash
+pip install sqlmodel
 ```
 
-### Paso 2: Definir un modelo de datos
+### Paso 2: Crear un modelo de SQLModel 
 
-El siguiente paso es definir un modelo de datos. Un modelo de datos es una clase que hereda de `BaseModel` y define los campos que esperamos recibir en nuestra API.
-
-Por ejemplo, si nuestra API recibe datos de una reservación, podríamos definir un modelo de datos como el siguiente:
+En un archivo `main.py` crea un modelo de SQLModel para la tabla `reservation`:
 
 ```python
 # main.py
 
 from datetime import datetime
 
-from pydantic import BaseModel
+from sqlmodel import Field, SQLModel
 
 
-class Reservation(BaseModel):
+class Reservation(SQLModel, table=True):
+    id: int = Field(default=None, primary_key=True)
     name: str
     email: str
     datetime: datetime
     guests: int
-    observation: str | None = None 
+    observation: str | None = None
 ```
 
-### Paso 3: Añadir validaciones adicionales
+La clase `Reservation` es un modelo de SQLModel, el equivalente a una tabla SQL en código Python, y cada atributo de la clase es equivalente a una columna de la tabla.
 
-Pydantic nos permite añadir validaciones adicionales a nuestros campos utilizando `Field`. Por ejemplo, podemos añadir una validación para asegurarnos de que el campo `guests` sea mayor que 0 y menor que 10. Primero, importamos `Field` de Pydantic. Luego, añadimos la validación al campo `guests` utilizando los argumentos `gt` y `lt` en `Field`, que representan "greater than" (mayor que) y "less than" (menor que), respectivamente.
+### Paso 3: Crear el motor de la base de datos (`engine`)
+
+Para crear el motor de la base de datos, necesitas importar la función `create_engine` de SQLModel y pasarle la URL de la base de datos.
+
+Cada URL de base de datos tiene un formato específico, por ejemplo, para SQLite, (que es la base de datos que usaremos en este ejemplo), la URL es `sqlite:///` seguido del nombre del archivo de la base de datos, en este caso, `database.db`:
 
 ```python
 # main.py
 
 from datetime import datetime
 
-from pydantic import BaseModel, Field
+from sqlmodel import Field, SQLModel, create_engine
 
 
-class Reservation(BaseModel):
+class Reservation(SQLModel, table=True):
+    id: int = Field(default=None, primary_key=True)
     name: str
     email: str
     datetime: datetime
-    guests: int = Field(gt=0, lt=10)
-    observation: str | None = None 
+    guests: int
+    observation: str | None = None
+
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
 ```
 
-### Paso 4: Usar el modelo de datos en nuestra API
+En este ejemplo, estamos usando el argumento `echo=True` para que el motor de la base de datos imprima todas las consultas SQL que se ejecutan en la consola, es particularmente útil para depurar y entender lo que está pasando en la base de datos.
 
-Para usar este modelo de datos en nuestra API, declaramos el tipo de nuestro argumento con el modelo que creamos:
+**Nota:** El motor de la base de datos (`engine`) es un objeto que se encarga de la comunicación con la base de datos y de manejar las conexiones, se crea una sola vez y se reutiliza en toda la app.
+
+### Paso 4: Crear la base de datos y la tabla
+
+Crear el motor de base de datos no crea el archivo de la base de datos, para crear la base de datos y la tabla, necesitas ejecutar `SQLModel.metadata.create_all(engine)`, esto creará el archivo `database.db` y la tabla `reservation` en la base de datos.
+
+```python
+# main.py
+
+from datetime import datetime
+
+from sqlmodel import Field, SQLModel, create_engine
+
+
+class Reservation(SQLModel, table=True):
+    id: int = Field(default=None, primary_key=True)
+    name: str
+    email: str
+    datetime: datetime
+    guests: int
+    observation: str | None = None
+
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
+
+SQLModel.metadata.create_all(engine)
+```
+
+### Paso 5: Correr el programa
+
+Para correr el programa, ejecuta el siguiente comando:
+
+```bash
+python main.py
+```
+
+Si todo está correcto, verás lo siguiente en la consola:
+
+```
+2024-06-04 22:52:56,487 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("reservation")
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info("reservation")
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine 
+CREATE TABLE reservation (
+        id INTEGER NOT NULL, 
+        name VARCHAR NOT NULL, 
+        email VARCHAR NOT NULL, 
+        datetime DATETIME NOT NULL, 
+        guests INTEGER NOT NULL, 
+        observation VARCHAR, 
+        PRIMARY KEY (id)
+)
+
+
+2024-06-04 22:52:56,488 INFO sqlalchemy.engine.Engine [no key 0.00008s] ()
+2024-06-04 22:52:56,513 INFO sqlalchemy.engine.Engine COMMIT
+
+```
+
+Esto significa que la tabla `reservation` fue creada con éxito en la base de datos `database.db` y se verá algo así (aunque por el momento aún no hay registros):
+
+| id       | name    | email             | datetime            | guests | observation   |
+| -------- | ------- | ----------------- | ------------------- | -------| ------------- |
+| 1        | Ana     |ana@domain.com     | 2024-06-04 22:52:56 | 2      | None          |
+| 2        | Jane    |jane@domain.com    | 2024-06-04 22:52:56 | 3      | Outside table |
+| 3        | John    |john@domain.com    | 2024-06-04 22:52:56 | 6      | None          |
+
+### Paso 6: Crear un modelo adicional
+
+Como cada modelo de SQLModel es equivalente a un modelo de Pydantic, se puede usar para crear un endpoint en FastAPI. Sin embargo, si usamos el modelo que creamos anterioremente, se le estaría permitiendo al usuario escoger el `id` de la reserva en la base de datos, pero queremos que sea la base de datos la que decida el `id` en lugar del usuario. Para evitar esto, podemos crear un modelo adicional que no incluya el `id` al que llamaremos `ReservationBase`:
 
 ```python
 # main.py
@@ -84,26 +164,180 @@ Para usar este modelo de datos en nuestra API, declaramos el tipo de nuestro arg
 from datetime import datetime
 
 from fastapi import FastAPI
-from pydantic import BaseModel, Field
+from sqlmodel import Field, SQLModel, create_engine
 
 
-class Reservation(BaseModel):
+class ReservationBase(SQLModel):
     name: str
     email: str
     datetime: datetime
-    guests: int = Field(gt=0, lt=10)
-    observation: str | None = None 
+    guests: int
+    observation: str | None = None
 
+
+class Reservation(ReservationBase, table=True):
+    id: int = Field(default=None, primary_key=True)
+
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
+
+SQLModel.metadata.create_all(engine)
+```
+
+### Paso 7: Crear un endpoint en FastAPI
+
+Primero crea un app de FastAPI y luego agrega un endpoint para crear una reserva:
+
+```python
+# main.py
+
+from datetime import datetime
+
+from fastapi import FastAPI
+from sqlmodel import Field, SQLModel, create_engine
+
+
+class ReservationBase(SQLModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int
+    observation: str | None = None
+
+
+class Reservation(ReservationBase, table=True):
+    id: int = Field(default=None, primary_key=True)
+
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
+
+SQLModel.metadata.create_all(engine)
+
+app = FastAPI()
+
+@app.post("/reservations/")
+def create_reservation(reservation: ReservationBase):
+    return reservation
+```
+
+Ahora que tenemos el modelo de `ReservationBase` lo podemos usar en el nuevo endpoint `create_reservation` que creamos en FastAPI.
+
+**Nota:** Hasta este paso el endpoint `create_reservation` solo retorna la reserva que recibe para probar que todo está funcionando correctamente.
+
+### Paso 8: Guardar la reserva
+
+Lo primero que necesitamos es importar `Session` de SQLModel y luego crear una sesión con el motor de la base de datos (`engine`), en nuestro ejemplo lo haremos en el mismo endpoint.
+
+**Nota:** La sesión (`session`) usa el motor de la base de datos (`engine`) para comunicarse con la base de datos. Se usa una sesión por request.
+
+En un bloque `with`, creamos una sesión, pasando `engine` como parámetro.
+
+Luego utilizamos el método de `model_validate()` para crear un objeto de tipo `Reservation` a partir del objeto de tipo `ReservationBase` que recibimos en el endpoint.
+
+Luego con los métodos `add()`, `commit()` y `refresh()` de la sesión agregamos, guardamos y refrescamos la reserva en la base de datos y finalmente la retornamos.
+
+La sesión se cerrará automáticamente al final del bloque `with`.
+
+```python
+# main.py
+
+from datetime import datetime
+
+from fastapi import FastAPI
+from sqlmodel import Field, SQLModel, create_engine, Session
+
+
+class ReservationBase(SQLModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int
+    observation: str | None = None
+
+
+class Reservation(ReservationBase, table=True):
+    id: int = Field(default=None, primary_key=True)
+
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
+
+SQLModel.metadata.create_all(engine)
 
 app = FastAPI()
 
 
-@app.post("/reservation/")
-async def create_reservation(reservation: Reservation):
-    return reservation
+@app.post("/reservations/")
+def create_reservation(reservation: ReservationBase):
+    with Session(engine) as session:
+        db_reservation = Reservation.model_validate(reservation)
+        session.add(db_reservation)
+        session.commit()
+        session.refresh(db_reservation)
+        return db_reservation
 ```
 
-### Paso 5: Ejecutar el servidor
+### Paso 9: Leer las reservas
+
+Primero, importamos `select` de SQLModel y luego creamos un nuevo endpoint para leer las reservas. De igual manera que en el paso anterior, primero creamos una sesión y luego ejecutamos una consulta para obtener todas las reservas en la base de datos.
+
+```python
+# main.py
+
+from datetime import datetime
+
+from fastapi import FastAPI
+from sqlmodel import Field, SQLModel, create_engine, Session, select
+
+
+class ReservationBase(SQLModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int
+    observation: str | None = None
+
+
+class Reservation(ReservationBase, table=True):
+    id: int = Field(default=None, primary_key=True)
+
+
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+engine = create_engine(sqlite_url, echo=True)
+
+SQLModel.metadata.create_all(engine)
+
+app = FastAPI()
+
+
+@app.post("/reservations/")
+def create_reservation(reservation: ReservationBase):
+    with Session(engine) as session:
+        db_reservation = Reservation.model_validate(reservation)
+        session.add(db_reservation)
+        session.commit()
+        session.refresh(db_reservation)
+        return db_reservation
+
+
+@app.get("/reservations/")
+def read_reservations():
+    with Session(engine) as session:
+        reservations = session.exec(select(Reservation)).all()
+        return reservations
+```
+
+### Paso 10: Ejecutar el servidor
 
 Ejecuta el servidor con el siguiente comando:
 
@@ -111,31 +345,34 @@ Ejecuta el servidor con el siguiente comando:
 fastapi dev main.py
 ```
 
-### Paso 6: Probar con Swagger UI
+### Paso 11: Probar con Swagger UI
 
 Una vez que el servidor esté en funcionamiento, podemos probar nuestra API en Swagger UI. Si vamos a la URL `http://127.0.0.1:8000/docs`, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
 
-El modelo de datos creado se refleja en la documentación de Swagger, mostrando los campos esperados y sus tipos.
+Intenta crear una reserva y luego listar todas las reservas. Todo debería funcionar correctamente. 🤓
 
 ![](./images/image01.png)
 
-Ahora podemos probar nuestra API enviando datos y ver cómo se validan automáticamente. Si probamos enviando datos válidos, nuestra API enviará una respuesta exitosa.
-
 ![](./images/image02.png)
 
-Por el contrario, si enviamos un campo con algún dato que no cumpla con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción y FastAPI devolverá un error al cliente detalladamente.
+**Tip:** También puedes instalar DB Browser para SQLite para ver la tabla `reservation` y los registros que has creado, además de ejecutar consultas SQL directamente en la base de datos.
 
 ![](./images/image03.png)
 
 ## Reto
 
-💡 Ahora es tu turno, añade validaciones adicionales a los campos del modelo de datos `Reservation`, asegúrate que el campo `name` no esté vacío y que el campo `observation` tenga una longitud máxima de 100 caracteres.
+💡 Ahora es tu turno, crea un endpoint para eliminar una reserva. 
+Pista: https://sqlmodel.tiangolo.com/tutorial/delete/ - https://sqlmodel.tiangolo.com/tutorial/fastapi/delete/ 🔍️
 
-Recuerda, la práctica hace al maestro. 🙇‍♀️
-¡Buena suerte con tu reto! ✌️
+Recuerda, la práctica hace al maestro. 🙇‍♀️ ¡Buena suerte con tu reto! ✌️
 
 ## Recursos adicionales
 
-📝 **Documentación de Pydantic**: Consulta la sección de [`String Constraints`](https://docs.pydantic.dev/latest/concepts/fields/#string-constraints) en la documentación oficial de Pydantic. Aquí encontrarás una descripción detallada de cómo puedes aplicar restricciones y validaciones a las cadenas de texto en tus modelos de datos.
+**Nota:** Este es un ejemplo simple con todo el código en un mismo archivo para facilitar el aprendizaje. Puedes consultar más en las siguientes fuentes donde aprenderás cómo estructurar mejor tus aplicaciones con múltiples archivos, manejar sesiones con *Dependencies*, agregar tests y profundizar más sobre otros temas:
 
-📝 **Tutorial de FastAPI**: El [`Tutorial - User Guide`](https://fastapi.tiangolo.com/tutorial/) es una excelente fuente de información. Este tutorial cubre una amplia gama de temas, incluyendo la validación de datos, y puede ayudarte a entender cómo implementar y mejorar tus validaciones en FastAPI.
+📝 **Introducción a bases de datos**: Consulta el capítulo de [`Intro to Databases`](https://sqlmodel.tiangolo.com/databases/) en la documentación oficial de SQLModel si quieres aprender más sobre bases de datos.
+
+📝 **ORMs**: Consulta el capítulo de [`Database to Code (ORMs)`](https://sqlmodel.tiangolo.com/db-to-code/) en la documentación oficial de SQLModel si quieres profundizar más sobre ORMs.
+
+📝 **Tutorial de SQLModel**: Consulta el capítulo de [`Tutorial - User Guide`](https://sqlmodel.tiangolo.com/tutorial/) en la documentación oficial de SQLModel si quieres aprender más sobre SQLModel.
+

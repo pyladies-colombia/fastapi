@@ -1,140 +1,141 @@
-# Módulo 4: Ejemplo básico #2 - Gestión de Menús y Uso de Dependencias
+# Módulo 4: Ejemplo básico #2 - Validación de datos con Pydantic 🕵🏻‍♀️
 
-### Creadora: Nathaly Riaño
+### Creadora: Alejandra
 
 ## Descripción
 
-En este módulo aprenderemos sobre el uso de dependencias en FastAPI, una herramienta que nos permite gestionar la lógica compartida y modularizar nuestro código. Exploraremos un ejemplo práctico donde implementamos un menú de restaurante con varias operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
+En este módulo aprenderemos a validar datos en FastAPI usando Pydantic.
 
-## Importancia del Manejo de Dependencias
+### ¿Qué es Pydantic?
 
-El manejo de dependencias en FastAPI es crucial para mantener el código modular, reutilizable y fácil de mantener. Al usar dependencias, se puede gestionar la lógica común de una manera más estructurada, facilitando la inyección de dependencias en diferentes puntos de la aplicación. Esto ayuda a:
+<a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a> es una herramienta que nos permite definir modelos de datos y validar los datos que recibimos en nuestra API.
 
-- Reducir la Duplicación de Código: La lógica común, como la obtención de datos o la validación, puede ser definida una vez y reutilizada.
-- Mejorar la Legibilidad: Al separar las preocupaciones, el código principal de los endpoints se mantiene limpio y enfocado en la lógica específica del endpoint.
-- Facilitar el Testeo: Las dependencias pueden ser fácilmente mockeadas durante las pruebas, lo que simplifica la creación de tests unitarios y de integración.
+### ¿Por qué es necesario validar datos en una API?
 
-## Ejemplo práctico
+La validación de datos nos permite asegurarnos de que los datos que recibimos son los correctos y cumplen con ciertas reglas o restricciones. Por ejemplo, podemos validar que un campo sea de un cierto tipo, que cumpla con un formato específico, etc.
 
-**Antes de iniciar** asegúrate de tener los requerimientos indicados en el [Módulo 2](../M%202/guia-modulo2.md).
+Sin validación, nuestra API podría recibir datos incorrectos, lo que podría llevar a errores en la aplicación.
 
-### Paso 1: Crear la Estructura del Proyecto
+## Ejemplo
 
-Crea la siguiente estructura de directorios y archivos para el proyecto:
+**Nota:** Para este ejemplo, necesitas la versión 3.10 de Python. Puedes guiarte con el [Módulo 2](../M%202/guia-modulo2.md) para configurar tu entorno de desarrollo.
 
-```bash
-restaurant_menu/
-└── main.py
-```
+Imagina que tienes una API que recibe datos de un formulario en tu app para gestionar reservas en un restaurante. Para asegurarnos de que los datos que recibimos son los correctos, necesitamos validarlos.
 
-### Paso 2: Importación de Módulos y Definición de la Aplicación
+Antes de comenzar, crea un archivo `main.py` y sigue los pasos a continuación.
 
-Primero, inicializamos nuestra aplicación FastAPI:
+### Paso 1: Importar BaseModel de Pydantic
 
-- `FastAPI` se utiliza para crear la aplicación web.
-- `Depends` se usa para manejar dependencias en los endpoints.
-- `HTTPException` permite manejar excepciones HTTP.
-- `Query` se utiliza para definir parámetros de consulta.
-- `Union` y `Annotated` se utilizan para la tipificación y documentación de los parámetros
+Para usar Pydantic en nuestra API, primero debemos importar la clase `BaseModel` de Pydantic:
 
 ```python
-from fastapi import FastAPI, Depends, HTTPException, Query
-from typing import Union, List
+from pydantic import BaseModel
+```
+
+### Paso 2: Definir un modelo de datos
+
+El siguiente paso es definir un modelo de datos. Un modelo de datos es una clase que hereda de `BaseModel` y define los campos que esperamos recibir en nuestra API.
+
+Por ejemplo, si nuestra API recibe datos de una reservación, podríamos definir un modelo de datos como el siguiente:
+
+```python
+# main.py
+
+from datetime import datetime
+
+from pydantic import BaseModel
+
+
+class Reservation(BaseModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int
+    observation: str | None = None 
+```
+
+### Paso 3: Añadir validaciones adicionales
+
+Pydantic nos permite añadir validaciones adicionales a nuestros campos utilizando `Field`. Por ejemplo, podemos añadir una validación para asegurarnos de que el campo `guests` sea mayor que 0 y menor que 10. Primero, importamos `Field` de Pydantic. Luego, añadimos la validación al campo `guests` utilizando los argumentos `gt` y `lt` en `Field`, que representan "greater than" (mayor que) y "less than" (menor que), respectivamente.
+
+```python
+# main.py
+
+from datetime import datetime
+
+from pydantic import BaseModel, Field
+
+
+class Reservation(BaseModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int = Field(gt=0, lt=10)
+    observation: str | None = None 
+```
+
+### Paso 4: Usar el modelo de datos en nuestra API
+
+Para usar este modelo de datos en nuestra API, declaramos el tipo de nuestro argumento con el modelo que creamos:
+
+```python
+# main.py
+
+from datetime import datetime
+
+from fastapi import FastAPI
+from pydantic import BaseModel, Field
+
+
+class Reservation(BaseModel):
+    name: str
+    email: str
+    datetime: datetime
+    guests: int = Field(gt=0, lt=10)
+    observation: str | None = None 
+
 
 app = FastAPI()
+
+
+@app.post("/reservation/")
+async def create_reservation(reservation: Reservation):
+    return reservation
 ```
 
-### Paso 3: Definición de los Elementos del Menú
+### Paso 5: Ejecutar el servidor
 
-`menu_items` es una lista de diccionarios, donde cada diccionario representa un elemento del menú con su `item_id`, `name`, `description`, y `price`.
+Ejecuta el servidor con el siguiente comando:
 
-```python
-menu_items = [
-  {
-    "item_id": 1,
-    "name": "Bandeja Paisa",
-    "description": "Traditional dish with beans, rice, pork, plantain, avocado, arepa, and egg",
-    "price": 15.0
-  },
-  # ... otros elementos ...
-]
+```bash
+fastapi dev main.py
 ```
 
-### Paso 4: Función para Obtener el Menú
+### Paso 6: Probar con Swagger UI
 
-`get_menu` es una función que devuelve los elementos del menú y puede limitar el número de elementos devueltos usando el parámetro `limit`.
+Una vez que el servidor esté en funcionamiento, podemos probar nuestra API en Swagger UI. Si vamos a la URL `http://127.0.0.1:8000/docs`, veremos la documentación generada automáticamente por FastAPI con Swagger UI.
 
-```python
-def get_menu(
-  limit: Annotated[Union[int, None],
-  Query(description="Limit the number of menu items returned")] = None
-):
-  if limit:
-    return menu_items[:limit]
+El modelo de datos creado se refleja en la documentación de Swagger, mostrando los campos esperados y sus tipos.
 
-  return menu_items
-]
-```
+![](./images/image01.png)
 
-### Paso 5: Endpoint para Listar los Elementos del Menú
+Ahora podemos probar nuestra API enviando datos y ver cómo se validan automáticamente. Si probamos enviando datos válidos, nuestra API enviará una respuesta exitosa.
 
-Este endpoint utiliza la función `get_menu` como una dependencia para obtener y devolver los elementos del menú.
+![](./images/image02.png)
 
-```python
-@app.get("/menu_items/", response_model=list[dict])
-def read_menu_items(menu=Depends(get_menu)):
-  return menu
-```
+Por el contrario, si enviamos un campo con algún dato que no cumpla con las reglas definidas en nuestro modelo de datos, Pydantic lanzará una excepción y FastAPI devolverá un error al cliente detalladamente.
 
-### Paso 6: Endpoint para Leer un Elemento del Menú por ID
+![](./images/image03.png)
 
-Este endpoint busca un elemento del menú por `item_id`. Si no lo encuentra, lanza una excepción `HTTP 404`.
+## Reto
 
-```python
-@app.get("/menu_items/{item_id}", response_model=dict)
-def read_menu_item(item_id: int):
-  for item in menu_items:
-    if item["item_id"] == item_id:
-      return item
+💡 Ahora es tu turno, añade validaciones adicionales a los campos del modelo de datos `Reservation`, asegúrate que el campo `name` no esté vacío y que el campo `observation` tenga una longitud máxima de 100 caracteres.
 
-  raise HTTPException(status_code=404, detail="Item not found")
-```
-### Paso 7: Endpoint para Actualizar un Elemento del Menú
+Recuerda, la práctica hace al maestro. 🙇‍♀️
+¡Buena suerte con tu reto! ✌️
 
-Este endpoint permite actualizar un elemento del menú especificado por `item_id`. Actualiza el `name`, `description`, y `price` del elemento.
+## Recursos adicionales
 
-```python
-@app.put("/menu_items/{item_id}", response_model=dict)
-def update_menu_item(
-  item_id: int,
-  name: str,
-  description: str,
-  price: float
-):
-  for item in menu_items:
-    if item["item_id"] == item_id:
-      item.update({
-        "name": name,
-        "description": description,
-        "price": price
-      })
-      return item
+📝 **Documentación de Pydantic**: Consulta la sección de [`String Constraints`](https://docs.pydantic.dev/latest/concepts/fields/#string-constraints) en la documentación oficial de Pydantic. Aquí encontrarás una descripción detallada de cómo puedes aplicar restricciones y validaciones a las cadenas de texto en tus modelos de datos.
 
-  raise HTTPException(status_code=404, detail="Item not found")
-```
-
-### Paso 8: Probar la API desde Swagger
-
-Para probar la API, sigue estos pasos:
-
-1. Abre tu navegador web y ve a http://127.0.0.1:8000/docs.
-2. Usa los botones `Try it out` en cada endpoint para interactuar con la API:
-    - GET `/menu_items/` para listar los elementos del menú, con la opción de limitar el número de elementos devueltos usando el parámetro `limit`.
-    - GET `/menu_items/{item_id}` para obtener un elemento específico del menú por `item_id`.
-    - PUT `/menu_items/{item_id}` para actualizar un elemento del menú especificado por `item_id`, proporcionando el `name`, `description` y `price`.
-
-## Nuevos Retos
-
-1. Extrae las funciones para listar los elementos del menú, listar un elemento del menú y actualizar un elemento del menú. Pista: Observa cómo la función `get_menu` se está usando como una dependencia en el endpoint para listar los elementos del menú.
-2. Agrega un endpoint para eliminar un item del menú, este se vería así:
-    - DELETE `/menu_items/{item_id}` para eliminar un elemento del menú especificado por `item_id`.
+📝 **Tutorial de FastAPI**: El [`Tutorial - User Guide`](https://fastapi.tiangolo.com/tutorial/) es una excelente fuente de información. Este tutorial cubre una amplia gama de temas, incluyendo la validación de datos, y puede ayudarte a entender cómo implementar y mejorar tus validaciones en FastAPI.
