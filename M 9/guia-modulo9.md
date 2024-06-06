@@ -1,6 +1,7 @@
 # Módulo 9
 ## Ejemplo Avanzado #2 - WebSockets en FastAPI
 
+
 ### Creadora: Julián Amaya
 
 ---
@@ -31,7 +32,7 @@ Los WebSockets son un protocolo de comunicación que proporciona canales de comu
 
 ## Ejemplo 1: Logrando la conexión
 
-Afortunadamente, FastAPI hace que sea **muy** fácil crear una conexión con websockets.
+Afortunadamente, FastAPI hace que sea **muy** fácil crear una conexión con WebSockets.
 
 Ahora, tenemos que escribir código en JS para poder crear la conexión desde el navegador.
 
@@ -40,10 +41,11 @@ Vamos a crear un servidor sencillo que sirve una página con el JS necesario.
 Lo primero es, como siempre, iniciar la aplicación de FastAPI. Tenemos el archivo [main.py](http://main.py) con lo siguiente:
 
 ```python
+import asyncio
+
 from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
-import asyncio
-import random
+
 
 app = FastAPI()
 ```
@@ -51,12 +53,12 @@ app = FastAPI()
 Si corremos la aplicación usando:
 
 ```bash
-fastapi dev main.py 
+fastapi dev main.py
 ```
 
 Tendremos como resultado en nuestro navegador:
 
-![Untitled](./img/0.png)
+![](./img/0.png)
 
 Ahora, vamos a mostrar nuestro “sitio” sencillo agregando un html.
 
@@ -88,23 +90,24 @@ async def get():
 
 ```
 
-![Untitled](./img/1.png)
+![](./img/1.png)
 
-Ahora, creemos la conexión del websocket!
+Ahora, creemos la conexión del WebSocket!
 
-Primero, tenemos que importar el módulo de Websocket. Adicionalmente, para el ejemplo que haremos, importemos adicionalmente, datetime y asyncio
+Primero, tenemos que importar el módulo de Websocket. Adicionalmente, para el ejemplo que haremos, importemos adicionalmente, datetime y asyncio:
 
 ```python
-from fastapi import FastAPI, WebSocket
-import datetime
 import asyncio
+import datetime
+
+from fastapi import FastAPI, WebSocket
 ```
 
 > **[!TIP]**
-Este módulo es realmente el módulo de Starlette que FastAPI nos ayuda a importar de manera sencilla 🙂
-> 
+Este módulo es realmente el módulo de Starlette que FastAPI nos ayuda a importar de manera sencilla. 🙂
+>
 
-Luego, modifiquemos el html para que incluya un script de Javascript que cuando reciba un mensaje por un websocket, reemplace el contenido del sitio con el mensaje:
+Luego, modifiquemos el HTML para que incluya un script de JavaScript que cuando reciba un mensaje por un WebSocket, reemplace el contenido del sitio con el mensaje:
 
 ```python
 html = """
@@ -127,7 +130,7 @@ html = """
 """
 ```
 
-Finalmente, tenemos que agregar una nueva vista de tipo websocket.
+Finalmente, tenemos que agregar una nueva vista de tipo WebSocket:
 
 ```python
 
@@ -142,15 +145,15 @@ async def websocket_endpoint(websocket: WebSocket):
 
 Si corremos la aplicación, ahora veremos:
 
-![Untitled](./img/2.png)
+![](./img/2.png)
 
 Ahora, cómo podemos *debuggear* la conexión y lo que estamos recibiendo?
 
-Para hacerlo, podemos abrir las herramientas del desarrollador en nuestro navegador e ir a la pestaña de “Network”
+Para hacerlo, podemos abrir las herramientas del desarrollador en nuestro navegador e ir a la pestaña de “Network”:
 
-![Untitled](./img/3.png)
+![](./img/3.png)
 
-De esta forma podemos ver los mensajes que recibimos del servidor! Cómo ven, sólo una conexión se hace al servidor y dentro de ella podemos ver múltiples mensajes!
+De esta forma podemos ver los mensajes que recibimos del servidor! Como ven, sólo una conexión se hace al servidor y dentro de ella podemos ver múltiples mensajes!
 
 El código completo de este primer ejercicio está en `ejemplos/reloj.py` .
 
@@ -164,17 +167,17 @@ Para poner esto en práctica, vamos a construir una aplicación de chat comunita
 
 ### Paso 1:
 
-Vamos a partir del ejemplo anterior. Si no lo han hecho, puedes copiar el archivo `ejemplos/main.py` 
+Vamos a partir del ejemplo anterior. Si no lo has hecho, puedes copiar el archivo `ejemplos/main.py`:
 
 ```python
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-from fastapi.responses import HTMLResponse
 import asyncio
-from typing import Dict
 import json
 
-app = FastAPI()
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi.responses import HTMLResponse
 
+
+app = FastAPI()
 ```
 
 ### Paso 2: Creación de la interfaz de usuario
@@ -248,7 +251,7 @@ html = """
 
 Se ve bastante complejo, pero en realidad, este HTML hace uso de Tailwind para mostrar una interfaz similar a un chat (y es responsive!)
 
-Ahora, notarás varias funciones en Javascript:
+Ahora, notarás varias funciones en JavaScript:
 
 ```jsx
 function solicitarNombreUsuario() {
@@ -281,7 +284,7 @@ function enviarMensaje() {
 }
 ```
 
-Aunque no entraremos en detalle de todas, la más interesante/compleja es la 2da: nos muestra cómo recibir a través del mismo Websocket al backend múltiples tipos de mensaje, en este caso, mandaremos el listado de usuarios y el mensaje de un usuario. De esta forma vamos a poder saber: cuando alguien se conecta y cuando alguien envíe un mensaje.
+Aunque no entraremos en detalle de todas, la más interesante/compleja es la 2da: nos muestra cómo recibir a través del mismo WebSocket al backend múltiples tipos de mensaje, en este caso, mandaremos el listado de usuarios y el mensaje de un usuario. De esta forma vamos a poder saber: cuando alguien se conecta y cuando alguien envíe un mensaje.
 
 ### Paso 3: Servir la página HTML desde FastAPI
 
@@ -307,7 +310,7 @@ Creamos una clase `AdministradorConexiones` para manejar las conexiones activas 
 ```python
 class AdministradorConexiones:
     def __init__(self):
-        self.conexiones_activas: Dict[str, WebSocket] = {}
+        self.conexiones_activas: dict[str, WebSocket] = {}
 
     async def conectar(self, websocket: WebSocket, nombre_usuario: str):
         await websocket.accept()
@@ -334,7 +337,7 @@ class AdministradorConexiones:
 administrador = AdministradorConexiones()
 ```
 
-¿Qué hace esta clase? Maneja un listado de conexiones de Websocket, una por cada usuaria. Cuando una nueva usuaria se conecta, se llama función `conectar` que:
+¿Qué hace esta clase? Maneja un listado de conexiones de Websocket, una por cada usuaria. Cuando una nueva usuaria se conecta, se llama la función `conectar` que:
 
 1. Agrega la nueva conexión al listado de conexiones
 2. Envia a la nueva usuaria el listado de usuarias conectadas
@@ -367,13 +370,9 @@ async def endpoint_websocket(websocket: WebSocket, nombre_usuario: str = ""):
 
 ### Paso 6: Ejecución de la aplicación
 
-Finalmente, ejecutamos nuestra aplicación FastAPI usando Uvicorn.
-
-```python
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
-
+Finalmente, ejecutamos nuestra aplicación FastAPI:
+```bash
+fastapi dev main.py
 ```
 
 Y… ya funciona el chat! Podrás abrir multiples ventanas y chatear entre ellas!
@@ -394,7 +393,7 @@ De esa manera, tu servidor de prueba recibirá conexiones incluso desde otros co
 
 ### Resumen
 
-En este ejemplo, hemos creado una aplicación de chat en tiempo real donde las usuarias pueden conectarse, enviar mensajes y ver la lista de usuarias conectadas. 
+En este ejemplo, hemos creado una aplicación de chat en tiempo real donde las usuarias pueden conectarse, enviar mensajes y ver la lista de usuarias conectadas.
 
 Hay muchos pasos por hacer como por ejemplo:
 
@@ -402,9 +401,9 @@ Hay muchos pasos por hacer como por ejemplo:
 2. Persistir en la base de datos los mensajes
 3. Agregar soporte para imágenes!
 
-# Conclusión
+## Conclusión
 
-Los Websockets son una herramienta muy poderosa a la hora de construir aplicaciones. Permiten cambiar el paradigma donde un cliente consulta al servidor cuando quiere obtener información y permite que el servidor decida cuando debe enviar la información al cliente.
+Los WebSockets son una herramienta muy poderosa a la hora de construir aplicaciones. Permiten cambiar el paradigma donde un cliente consulta al servidor cuando quiere obtener información y permite que el servidor decida cuando debe enviar la información al cliente.
 
 Aunque FastAPI hace muy simple su implementación hay que tener en cuenta varias cosas a la hora de implementarlo:
 
@@ -418,4 +417,4 @@ Gracias por participar!
 
 Por favor no usen strings para responder HTMLs. Aunque para el ejercicio o pruebas rápidas es válido, no es ideal y en producción hay muchas mejores prácticas. Si lo hacen, deberán enviarle este meme a Tiangolo, el creador de FastAPI:
 
-![Untitled](./img/meme.png)
+![](./img/meme.png)
