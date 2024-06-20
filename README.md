@@ -42,11 +42,13 @@ Este taller es autoguiado. Está diseñado para que puedas comenzar en cualquier
 
 ## ¿Quieres traducirlo a otros idiomas?
 
-✳️ Este taller tiene mucho amor, está abierto para mejoras, así que si quieres aportar envíanos tu PR.  Abre un [issue nuevo](https://github.com/pyladies-colombia/fastapi/issues/new) aquí. 
+✳️ Este taller tiene mucho amor, está abierto para mejoras, así que si quieres aportar envíanos tu PR.  
+* Abre un [issue nuevo](https://github.com/pyladies-colombia/fastapi/issues/new) aquí. 
 
 ## Versiones de eventos
 
 - 1ra versión: Junio 6 de 2024, 5:00 p. m. a 8:00 p. m. ([Evento](https://www.instagram.com/p/C7mMc58A_zc/))
+> ¿Quieres hacer una versión del taller? ¡Claro que sí! Cuando quieras y tu grupo de estudio o comunidad puedan, avísanos, envía un PR para agregar tu taller aquí y darle visibilidad.
 
 ---
 
